@@ -7,57 +7,57 @@ import { Spinner } from './common/Spinner';
 
 // --- Audio Helper Functions ---
 function encode(bytes: Uint8Array) {
-  let binary = '';
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  return btoa(binary);
+    let binary = '';
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
 }
 
 function decode(base64: string) {
-  const binaryString = atob(base64);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
-  }
-  return bytes;
+    const binaryString = atob(base64);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes;
 }
 
 async function decodeAudioData(
-  data: Uint8Array,
-  ctx: AudioContext,
-  sampleRate: number,
-  numChannels: number,
+    data: Uint8Array,
+    ctx: AudioContext,
+    sampleRate: number,
+    numChannels: number,
 ): Promise<AudioBuffer> {
-  const dataInt16 = new Int16Array(data.buffer);
-  const frameCount = dataInt16.length / numChannels;
-  const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
+    const dataInt16 = new Int16Array(data.buffer);
+    const frameCount = dataInt16.length / numChannels;
+    const buffer = ctx.createBuffer(numChannels, frameCount, sampleRate);
 
-  for (let channel = 0; channel < numChannels; channel++) {
-    const channelData = buffer.getChannelData(channel);
-    for (let i = 0; i < frameCount; i++) {
-      channelData[i] = dataInt16[i * numChannels + channel] / 32768.0;
+    for (let channel = 0; channel < numChannels; channel++) {
+        const channelData = buffer.getChannelData(channel);
+        for (let i = 0; i < frameCount; i++) {
+            channelData[i] = dataInt16[i * numChannels + channel] / 32768.0;
+        }
     }
-  }
-  return buffer;
+    return buffer;
 }
 
 function createBlob(data: Float32Array): Blob {
-  const l = data.length;
-  const int16 = new Int16Array(l);
-  for (let i = 0; i < l; i++) {
-    int16[i] = data[i] * 32768;
-  }
-  return {
-    data: encode(new Uint8Array(int16.buffer)),
-    mimeType: 'audio/pcm;rate=16000',
-  };
+    const l = data.length;
+    const int16 = new Int16Array(l);
+    for (let i = 0; i < l; i++) {
+        int16[i] = data[i] * 32768;
+    }
+    return {
+        data: encode(new Uint8Array(int16.buffer)),
+        mimeType: 'audio/pcm;rate=16000',
+    };
 }
 
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'demo-api-key-for-development' });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || 'demo-api-key-for-development' });
 
 export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -85,7 +85,7 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
     const stopConversation = async () => {
         console.log('Stopping conversation...');
         setSessionState('idle');
-        
+
         if (streamRef.current) {
             streamRef.current.getTracks().forEach(track => track.stop());
             streamRef.current = null;
@@ -99,8 +99,8 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
             inputAudioContextRef.current = null;
         }
         if (outputAudioContextRef.current && outputAudioContextRef.current.state !== 'closed') {
-           await outputAudioContextRef.current.close();
-           outputAudioContextRef.current = null;
+            await outputAudioContextRef.current.close();
+            outputAudioContextRef.current = null;
         }
         if (sessionPromiseRef.current) {
             try {
@@ -112,14 +112,14 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
             sessionPromiseRef.current = null;
         }
     };
-    
+
     useEffect(() => {
         // Cleanup on component unmount or language change
         return () => {
             stopConversation();
         };
     }, [language]);
-    
+
     const startConversation = async () => {
         setSessionState('connecting');
         setMessages([]);
@@ -129,21 +129,21 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 throw new Error("Your browser does not support audio recording.");
             }
-            
+
             streamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-            
+
             inputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
             outputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-            
+
             const source = inputAudioContextRef.current.createMediaStreamSource(streamRef.current);
             scriptProcessorRef.current = inputAudioContextRef.current.createScriptProcessor(4096, 1, 1);
-            
+
             scriptProcessorRef.current.onaudioprocess = (audioProcessingEvent) => {
                 const inputData = audioProcessingEvent.inputBuffer.getChannelData(0);
                 const pcmBlob = createBlob(inputData);
                 sessionPromiseRef.current?.then((session) => session.sendRealtimeInput({ media: pcmBlob }));
             };
-            
+
             source.connect(scriptProcessorRef.current);
             scriptProcessorRef.current.connect(inputAudioContextRef.current.destination);
 
@@ -157,7 +157,7 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                         setSessionState('active');
                     },
                     onmessage: async (message: LiveServerMessage) => {
-                         if (message.serverContent?.outputTranscription) {
+                        if (message.serverContent?.outputTranscription) {
                             const text = message.serverContent.outputTranscription.text;
                             currentOutputRef.current += text;
                             setCurrentOutput(currentOutputRef.current);
@@ -167,11 +167,11 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                             currentInputRef.current += text;
                             setCurrentInput(currentInputRef.current);
                         }
-                        
+
                         if (message.serverContent?.turnComplete) {
                             const fullInput = currentInputRef.current;
                             const fullOutput = currentOutputRef.current;
-                            
+
                             setMessages(prev => [
                                 ...prev,
                                 { role: 'user', text: fullInput },
@@ -188,13 +188,13 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                         if (base64Audio && outputAudioContextRef.current) {
                             const outputCtx = outputAudioContextRef.current;
                             nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outputCtx.currentTime);
-                            
+
                             const audioBuffer = await decodeAudioData(decode(base64Audio), outputCtx, 24000, 1);
-                            
+
                             const sourceNode = outputCtx.createBufferSource();
                             sourceNode.buffer = audioBuffer;
                             sourceNode.connect(outputCtx.destination);
-                            
+
                             sourceNode.addEventListener('ended', () => {
                                 audioSourcesRef.current.delete(sourceNode);
                             });
@@ -237,7 +237,7 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
             startConversation();
         }
     };
-    
+
     const getStatusText = () => {
         if (sessionState === 'error') return errorMessage;
         if (sessionState === 'connecting') return 'Connecting to Polly...';
@@ -259,25 +259,25 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                 <div className="space-y-4">
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                           {msg.role === 'model' && <span className="text-2xl">🦜</span>}
-                           <div className={`rounded-xl px-4 py-2 max-w-md shadow-sm ${msg.role === 'user' ? 'bg-rose-500 text-white' : 'bg-slate-100 text-gray-800'}`}>
-                               <p>{msg.text}</p>
-                           </div>
+                            {msg.role === 'model' && <span className="text-2xl">🦜</span>}
+                            <div className={`rounded-xl px-4 py-2 max-w-md shadow-sm ${msg.role === 'user' ? 'bg-rose-500 text-white' : 'bg-slate-100 text-gray-800'}`}>
+                                <p>{msg.text}</p>
+                            </div>
                         </div>
                     ))}
                     {currentInput && (
-                         <div className="flex items-end gap-2 justify-end">
+                        <div className="flex items-end gap-2 justify-end">
                             <div className="rounded-xl px-4 py-2 max-w-md shadow-sm bg-rose-500/80 text-white/90">
-                               <p>{currentInput}...</p>
-                           </div>
-                         </div>
+                                <p>{currentInput}...</p>
+                            </div>
+                        </div>
                     )}
                     {currentOutput && (
                         <div className="flex items-end gap-2 justify-start">
-                             <span className="text-2xl">🦜</span>
+                            <span className="text-2xl">🦜</span>
                             <div className="rounded-xl px-4 py-2 max-w-md shadow-sm bg-slate-100/80 text-gray-800/90">
-                               <p>{currentOutput}...</p>
-                           </div>
+                                <p>{currentOutput}...</p>
+                            </div>
                         </div>
                     )}
                     {sessionState === 'connecting' && (
@@ -302,11 +302,11 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                         disabled:bg-gray-400 disabled:cursor-not-allowed`}
                     title={sessionState === 'active' ? 'Stop Conversation' : 'Start Conversation'}
                 >
-                   {sessionState === 'active' ? (
-                       <StopCircleIcon className="w-10 h-10 text-white"/>
-                   ) : (
-                       <MicrophoneIcon className="w-10 h-10 text-white"/>
-                   )}
+                    {sessionState === 'active' ? (
+                        <StopCircleIcon className="w-10 h-10 text-white" />
+                    ) : (
+                        <MicrophoneIcon className="w-10 h-10 text-white" />
+                    )}
                 </button>
             </div>
         </div>

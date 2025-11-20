@@ -4,39 +4,7 @@ import { analyzeGrammar } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 import { Button } from './common/Button';
 import { marked } from 'marked';
-import { WORKSHOPS } from '../constants';
-import type { Workshop } from '../types';
-import { StarIcon, LockIcon, CalendarDaysIcon } from './icons/Icons';
-
-const WorkshopCard: React.FC<{ workshop: Workshop }> = ({ workshop }) => (
-    <div className="relative bg-white border-t-4 border-sky-400 p-5 rounded-xl shadow-lg flex flex-col h-full transform hover:-translate-y-1 transition-transform duration-300">
-        {workshop.isPro && (
-            <div className="absolute top-0 right-0 -mt-2 -mr-2">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-400 text-yellow-900 shadow-md">
-                    <StarIcon className="w-4 h-4 mr-1"/> PRO
-                </span>
-            </div>
-        )}
-        <div className="flex items-center gap-x-3 mb-3">
-            <div className="p-2 bg-sky-100 rounded-lg">
-                <CalendarDaysIcon className="w-6 h-6 text-sky-700"/>
-            </div>
-            <div>
-                <h3 className="font-bold text-gray-800 line-clamp-2">{workshop.title}</h3>
-                <p className="text-sm text-gray-500">{workshop.host}</p>
-            </div>
-        </div>
-        <div className="text-sm text-gray-600 flex-grow mb-4 space-y-1">
-            <p><span className="font-semibold">Date:</span> {workshop.date}</p>
-        </div>
-        <div className="mt-auto flex justify-between items-center">
-             <p className="font-bold text-lg text-teal-800">{workshop.price}</p>
-             <Button disabled={workshop.isPro}>
-                {workshop.isPro ? <> <LockIcon className="w-4 h-4 mr-1"/> Register</> : 'Register'}
-            </Button>
-        </div>
-    </div>
-);
+import { StarIcon, LockIcon } from './icons/Icons';
 
 export const GrammarClinicView: React.FC = () => {
     const [text, setText] = useState('');
@@ -64,22 +32,22 @@ export const GrammarClinicView: React.FC = () => {
             setIsLoading(false);
         }
     };
-    
+
     return (
         <div className="max-w-6xl mx-auto space-y-10">
             <div className="text-center">
                 <h1 className="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl font-poppins">Advanced Grammar & Writing Clinics</h1>
-                <p className="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Go beyond basic corrections with live workshops and expert proofreading services.</p>
+                <p className="mt-2 text-lg text-gray-600 max-w-3xl mx-auto">Go beyond basic corrections with expert proofreading services.</p>
             </div>
 
-             <div className="bg-gradient-to-r from-sky-400 to-teal-400 p-6 rounded-xl shadow-lg text-white">
+            <div className="bg-gradient-to-r from-sky-400 to-teal-400 p-6 rounded-xl shadow-lg text-white">
                 <div className="flex items-center gap-x-4">
                     <div className="bg-white/30 p-3 rounded-full">
-                        <StarIcon className="w-8 h-8"/>
+                        <StarIcon className="w-8 h-8" />
                     </div>
                     <div>
                         <h3 className="font-bold font-poppins text-lg">Unlock Your Full Potential with Pro</h3>
-                        <p className="text-sm mt-1">Access all premium workshops and get unlimited expert reviews by upgrading your account!</p>
+                        <p className="text-sm mt-1">Get unlimited expert reviews by upgrading your account!</p>
                         <button className="mt-3 inline-flex items-center justify-center gap-x-2 rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-teal-700 shadow-sm hover:bg-slate-100 transition-colors">
                             Upgrade to Pro
                         </button>
@@ -87,14 +55,6 @@ export const GrammarClinicView: React.FC = () => {
                 </div>
             </div>
 
-            {/* Live Workshops Section */}
-            <section>
-                <h2 className="text-2xl font-bold text-gray-700 font-poppins mb-4">Live Writing Workshops</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {WORKSHOPS.map(workshop => <WorkshopCard key={workshop.id} workshop={workshop}/>)}
-                </div>
-            </section>
-            
             {/* Grammar and Proofreading Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Instant Grammar Check */}
@@ -117,7 +77,7 @@ export const GrammarClinicView: React.FC = () => {
                 </section>
 
                 {/* Expert Proofreading */}
-                 <section className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-yellow-400">
+                <section className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-yellow-400">
                     <div className="flex items-center gap-x-2">
                         <h2 className="text-2xl font-bold font-poppins mb-4 text-gray-800">Expert Proofreading</h2>
                         <span className="mb-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-400 text-yellow-900 shadow-md">PRO</span>
@@ -132,7 +92,7 @@ export const GrammarClinicView: React.FC = () => {
                     />
                     <div className="mt-4 flex justify-end">
                         <Button disabled>
-                            <LockIcon className="w-4 h-4 mr-2"/> Submit for Expert Review
+                            <LockIcon className="w-4 h-4 mr-2" /> Submit for Expert Review
                         </Button>
                     </div>
                 </section>
@@ -140,8 +100,8 @@ export const GrammarClinicView: React.FC = () => {
 
             {analysis && (
                 <section className="mt-6 bg-white p-6 rounded-lg shadow-lg animate-fade-in border-t-4 border-green-400">
-                     <h2 className="text-2xl font-bold font-poppins mb-4 text-gray-800">Analysis Result</h2>
-                     <div
+                    <h2 className="text-2xl font-bold font-poppins mb-4 text-gray-800">Analysis Result</h2>
+                    <div
                         className="prose prose-teal max-w-none prose-p:text-gray-600 prose-headings:text-gray-700"
                         dangerouslySetInnerHTML={{ __html: analysis }}
                     />

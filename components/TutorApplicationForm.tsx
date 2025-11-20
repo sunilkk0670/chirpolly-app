@@ -123,8 +123,8 @@ export const TutorApplicationForm: React.FC<TutorApplicationFormProps> = ({ onSu
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full my-8 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-start justify-center p-4 pt-20 z-[100] overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full my-8 max-h-[85vh] overflow-y-auto">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-2xl font-bold text-gray-800">Apply to Become a Tutor</h2>
           <p className="text-gray-600 mt-1">Share your expertise and help learners worldwide</p>
@@ -140,7 +140,7 @@ export const TutorApplicationForm: React.FC<TutorApplicationFormProps> = ({ onSu
           {/* Basic Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800">Basic Information</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Full Name *
@@ -214,7 +214,7 @@ export const TutorApplicationForm: React.FC<TutorApplicationFormProps> = ({ onSu
           {/* Languages */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800">Languages</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Native Language(s) *

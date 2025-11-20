@@ -27,6 +27,9 @@ export const LoginPage: React.FC = () => {
         if (!cred.user.emailVerified) {
           setInfo('Please verify your email. We can resend the link.');
           navigate('/verify-email');
+        } else {
+          // Navigate to home page for verified users
+          navigate('/');
         }
       } else {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
@@ -79,6 +82,8 @@ export const LoginPage: React.FC = () => {
           createdAt: serverTimestamp(),
         }, { merge: true });
       }
+      // Navigate to home page after successful login
+      navigate('/');
     } catch (err: any) {
       setError(err?.message ?? 'Google sign-in failed');
     } finally {
@@ -132,9 +137,9 @@ export const LoginPage: React.FC = () => {
 
         <div className="relative">
           <div className="flex items-center my-4">
-            <div className="flex-1 h-px bg-slate-200"/>
+            <div className="flex-1 h-px bg-slate-200" />
             <span className="px-3 text-xs uppercase text-slate-500">or</span>
-            <div className="flex-1 h-px bg-slate-200"/>
+            <div className="flex-1 h-px bg-slate-200" />
           </div>
           <button type="button" onClick={handleGoogle} disabled={loading}
             className="w-full inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 bg-white px-3.5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 disabled:bg-slate-100 disabled:text-slate-400">
