@@ -27,6 +27,32 @@ const ItemCard: React.FC<{
     const itemId = 'id' in item ? item.id : item.lesson_id;
     const { bg, icon } = itemColorMap[itemId] || { bg: 'bg-slate-100', icon: item.emoji };
 
+    // Determine lesson level badge (A1, A2, or B1) based on lesson_id pattern
+    const getLevelBadge = () => {
+        if (!('lesson_id' in item)) return null; // Only for lessons, not scenarios
+
+        const lessonId = item.lesson_id;
+        let level = '';
+        let badgeColor = '';
+
+        if (lessonId.includes('_b1_')) {
+            level = 'B1';
+            badgeColor = 'bg-purple-500';
+        } else if (lessonId.endsWith('_02')) {
+            level = 'A2';
+            badgeColor = 'bg-green-500';
+        } else if (lessonId.endsWith('_01')) {
+            level = 'A1';
+            badgeColor = 'bg-blue-500';
+        }
+
+        return level ? (
+            <span className={`${badgeColor} text-white text-xs font-bold px-2 py-1 rounded`}>
+                {level}
+            </span>
+        ) : null;
+    };
+
     return (
         <motion.div
             className="h-full"
@@ -37,8 +63,11 @@ const ItemCard: React.FC<{
                 className="w-full h-full text-left p-4 bg-white rounded-xl shadow-md flex items-center gap-x-4 hover:shadow-lg transition-shadow duration-300"
             >
                 <div className={`text-2xl ${bg} p-3 rounded-lg`}>{icon}</div>
-                <div>
-                    <h3 className="font-bold text-slate-800">{item.title}</h3>
+                <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-bold text-slate-800">{item.title}</h3>
+                        {getLevelBadge()}
+                    </div>
                     <p className="text-sm text-slate-600 line-clamp-2">{item.description}</p>
                 </div>
             </button>
@@ -144,7 +173,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                     <h2 className="text-2xl md:text-3xl font-bold font-sans text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-blue-500 to-rose-500">Learn faster with bite-sized lessons, real conversations, and smart guidance powered by AI.</h2>
                     <button
                         onClick={() => {
-                            if (lessons.length > 0) onLessonSelect(lessons[0]); 
+                            if (lessons.length > 0) onLessonSelect(lessons[0]);
                             else navigate(VIEWS.LANGUAGES_PAGE.path);
                         }}
                         className="px-6 py-3 rounded-lg bg-slate-200 text-slate-800 font-semibold hover:bg-slate-300 whitespace-nowrap"
@@ -160,10 +189,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                     <h2 className="text-2xl font-bold text-slate-800 font-poppins mb-4">Core Lessons</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {lessons.map(lesson => (
-                            <ItemCard 
-                                key={lesson.lesson_id} 
-                                item={lesson} 
-                                onSelect={() => onLessonSelect(lesson)} 
+                            <ItemCard
+                                key={lesson.lesson_id}
+                                item={lesson}
+                                onSelect={() => onLessonSelect(lesson)}
                             />
                         ))}
                     </div>
@@ -205,9 +234,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                     >
                         <div className="flex items-center gap-4">
                             <p className="text-3xl font-bold text-slate-800">{dailyStreak}</p>
-                            <ProgressBar 
-                                progress={Math.min((dailyStreak / 7) * 100, 100)} 
-                                colorClass="bg-yellow-400" 
+                            <ProgressBar
+                                progress={Math.min((dailyStreak / 7) * 100, 100)}
+                                colorClass="bg-yellow-400"
                             />
                         </div>
                     </StatCard>
@@ -224,9 +253,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                             <p className="text-3xl font-bold text-slate-800">
                                 {xpProgress}<span className="text-lg text-slate-500">XP</span>
                             </p>
-                            <ProgressBar 
-                                progress={(xpProgress / 200) * 100} 
-                                colorClass="bg-sky-400" 
+                            <ProgressBar
+                                progress={(xpProgress / 200) * 100}
+                                colorClass="bg-sky-400"
                             />
                         </div>
                     </StatCard>

@@ -30,24 +30,24 @@ import { LanguagesView } from './components/LanguagesView';
 import { PlaceholderView } from './components/PlaceholderView';
 import { CommunityIcon, AchievementsIcon, ChallengesIcon, TutorIcon } from './components/icons/SidebarIcons';
 import type { View, Scenario, Language, Lesson } from './types';
-import { VIEWS, SCENARIOS, LANGUAGES, LESSONS } from './constants';
+import { VIEWS, SCENARIOS, LANGUAGES, LESSONS, LESSONS_WITH_B1, B1_LESSONS } from './constants';
 import { Button } from './components/common/Button';
 import { ShareIcon, XMarkIcon } from './components/icons/Icons';
 
 // Wrapper component to handle URL parameters for ScenarioView
 const ScenarioViewWrapper = ({ language }: { language: Language }) => {
-    const { id } = useParams<{ id: string }>();
-    const scenario = SCENARIOS.find(s => s.id === id);
-    // If a scenario is not found for the given ID, redirect to the dashboard.
-    return scenario ? <ScenarioView scenario={scenario} language={language} /> : <Navigate to="/" replace />;
+  const { id } = useParams<{ id: string }>();
+  const scenario = SCENARIOS.find(s => s.id === id);
+  // If a scenario is not found for the given ID, redirect to the dashboard.
+  return scenario ? <ScenarioView scenario={scenario} language={language} /> : <Navigate to="/" replace />;
 };
 
 // Wrapper component to handle URL parameters for LessonView
 const LessonViewWrapper = () => {
-    const { id } = useParams<{ id: string }>();
-    const lesson = LESSONS.find(l => l.lesson_id === id);
-    // If a lesson is not found for the given ID, redirect to the dashboard.
-    return lesson ? <LessonView lesson={lesson} /> : <Navigate to="/" replace />;
+  const { id } = useParams<{ id: string }>();
+  const lesson = LESSONS_WITH_B1.find(l => l.lesson_id === id);
+  // If a lesson is not found for the given ID, redirect to the dashboard.
+  return lesson ? <LessonView lesson={lesson} /> : <Navigate to="/" replace />;
 };
 
 
@@ -123,10 +123,12 @@ export default function App() {
       try {
         const { auth, isDemoModeEnabled } = await import('./services/firebase');
         const { onAuthStateChanged } = await import('firebase/auth');
-        
+
+        console.log('Firebase auth setup - Demo mode:', isDemoModeEnabled);
+
         if (isDemoModeEnabled) {
           // In demo mode, auto-authenticate with a demo user
-          console.log('Demo mode: Auto-authenticating with demo user');
+          console.log('✅ Demo mode: Auto-authenticating with demo user');
           setAuthUser({
             uid: 'demo-user-123',
             email: 'demo@chirpolly.app',
@@ -136,18 +138,30 @@ export default function App() {
           });
           setIsAuthenticated(true);
         } else {
+          console.log('🔐 Production mode: Setting up Firebase auth listener');
           unsub = onAuthStateChanged(auth, (user) => {
+            console.log('Auth state changed:', user?.email || 'logged out');
             setAuthUser(user);
             setIsAuthenticated(!!user);
           });
         }
       } catch (e) {
-        console.error(e);
+        console.error('❌ Firebase auth error:', e);
+        // Fallback to demo mode on error
+        console.log('Falling back to demo mode');
+        setAuthUser({
+          uid: 'demo-user-123',
+          email: 'demo@chirpolly.app',
+          emailVerified: true,
+          displayName: 'Demo User',
+          providerData: [],
+        });
+        setIsAuthenticated(true);
       }
     })();
     return () => { if (unsub) unsub(); };
   }, []);
-  
+
   useEffect(() => {
     // Redirect based on auth/verification status
     if (!isAuthenticated && location.pathname !== '/auth') {
@@ -166,25 +180,25 @@ export default function App() {
   useEffect(() => {
     // Check if banner was already dismissed
     if (localStorage.getItem('chirPollyInstallDismissed') === 'true') {
-        return;
+      return;
     }
-    
+
     const beforeInstallHandler = (e: Event) => {
-        e.preventDefault();
-        setInstallPrompt(e);
-        setShowInstallBanner(true);
+      e.preventDefault();
+      setInstallPrompt(e);
+      setShowInstallBanner(true);
     };
     window.addEventListener('beforeinstallprompt', beforeInstallHandler);
 
     const checkIos = () => {
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        return /iphone|ipad|ipod/.test(userAgent);
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
     }
     const checkStandalone = () => ('standalone' in window.navigator) && ((window.navigator as any).standalone);
 
     if (checkIos() && !checkStandalone()) {
-        setIsIos(true);
-        setShowInstallBanner(true);
+      setIsIos(true);
+      setShowInstallBanner(true);
     }
 
     return () => window.removeEventListener('beforeinstallprompt', beforeInstallHandler);
@@ -199,7 +213,7 @@ export default function App() {
     }
   }, [isAuthenticated]);
 
-  const handleLogin = () => {};
+  const handleLogin = () => { };
 
   const handleLogout = async () => {
     try {
@@ -225,7 +239,7 @@ export default function App() {
     navigate(VIEWS.LESSON.path.replace(':id', lesson.lesson_id));
     setSidebarOpen(false);
   };
-  
+
   const handleLanguageChange = (newLang: Language) => {
     if (newLang.code === currentLanguage.code) return; // No change
 
@@ -236,54 +250,54 @@ export default function App() {
     const scenarioMatch = pathname.match(new RegExp(`^${VIEWS.SCENARIO.path.replace(':id', '(.*)')}`));
 
     if (lessonMatch) {
-        const currentLessonId = lessonMatch[1];
-        const currentLesson = LESSONS.find(l => l.lesson_id === currentLessonId);
-        
-        if (currentLesson) {
-            const lessonIdParts = currentLesson.lesson_id.split('_');
-            if (lessonIdParts.length > 1) {
-                const lessonIdentifier = lessonIdParts.slice(1).join('_');
-                const newLessonId = `${newLang.code}_${lessonIdentifier}`;
-                const newLesson = LESSONS.find(l => l.lesson_id === newLessonId);
-                
-                if (newLesson) {
-                    navigate(VIEWS.LESSON.path.replace(':id', newLessonId));
-                } else {
-                    navigate(VIEWS.DASHBOARD.path);
-                }
-            } else {
-                navigate(VIEWS.DASHBOARD.path);
-            }
+      const currentLessonId = lessonMatch[1];
+      const currentLesson = LESSONS_WITH_B1.find(l => l.lesson_id === currentLessonId);
+
+      if (currentLesson) {
+        const lessonIdParts = currentLesson.lesson_id.split('_');
+        if (lessonIdParts.length > 1) {
+          const lessonIdentifier = lessonIdParts.slice(1).join('_');
+          const newLessonId = `${newLang.code}_${lessonIdentifier}`;
+          const newLesson = LESSONS_WITH_B1.find(l => l.lesson_id === newLessonId);
+
+          if (newLesson) {
+            navigate(VIEWS.LESSON.path.replace(':id', newLessonId));
+          } else {
+            navigate(VIEWS.DASHBOARD.path);
+          }
+        } else {
+          navigate(VIEWS.DASHBOARD.path);
         }
+      }
     } else if (scenarioMatch) {
-        const currentScenarioId = scenarioMatch[1];
-        const currentScenario = SCENARIOS.find(s => s.id === currentScenarioId);
+      const currentScenarioId = scenarioMatch[1];
+      const currentScenario = SCENARIOS.find(s => s.id === currentScenarioId);
 
-        if (currentScenario) {
-            const scenarioIdParts = currentScenario.id.split('-');
-            const langCodeIndex = scenarioIdParts.lastIndexOf(currentLanguage.code);
-            
-            if (langCodeIndex !== -1) {
-                const newScenarioIdParts = [...scenarioIdParts];
-                newScenarioIdParts[langCodeIndex] = newLang.code;
-                const newScenarioId = newScenarioIdParts.join('-');
-                const newScenario = SCENARIOS.find(s => s.id === newScenarioId);
+      if (currentScenario) {
+        const scenarioIdParts = currentScenario.id.split('-');
+        const langCodeIndex = scenarioIdParts.lastIndexOf(currentLanguage.code);
 
-                if (newScenario) {
-                    navigate(VIEWS.SCENARIO.path.replace(':id', newScenarioId));
-                } else {
-                    navigate(VIEWS.DASHBOARD.path);
-                }
-            } else {
-                navigate(VIEWS.DASHBOARD.path);
-            }
+        if (langCodeIndex !== -1) {
+          const newScenarioIdParts = [...scenarioIdParts];
+          newScenarioIdParts[langCodeIndex] = newLang.code;
+          const newScenarioId = newScenarioIdParts.join('-');
+          const newScenario = SCENARIOS.find(s => s.id === newScenarioId);
+
+          if (newScenario) {
+            navigate(VIEWS.SCENARIO.path.replace(':id', newScenarioId));
+          } else {
+            navigate(VIEWS.DASHBOARD.path);
+          }
+        } else {
+          navigate(VIEWS.DASHBOARD.path);
         }
+      }
     }
 
     if (pathname === VIEWS.KANJI_LAIR.path && newLang.code !== 'ja') {
-        navigate(VIEWS.DASHBOARD.path);
+      navigate(VIEWS.DASHBOARD.path);
     }
-    
+
     setCurrentLanguage(newLang);
   }
 
@@ -296,27 +310,27 @@ export default function App() {
     if (!installPrompt) return;
     installPrompt.prompt();
     installPrompt.userChoice.then((choiceResult: any) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-        } else {
-            console.log('User dismissed the A2HS prompt');
-        }
-        setInstallPrompt(null);
-        setShowInstallBanner(false);
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      setInstallPrompt(null);
+      setShowInstallBanner(false);
     });
   };
 
   const handleDismissBanner = () => {
-      localStorage.setItem('chirPollyInstallDismissed', 'true');
-      setShowInstallBanner(false);
+    localStorage.setItem('chirPollyInstallDismissed', 'true');
+    setShowInstallBanner(false);
   };
-  
+
 
   const dashboardProps = {
     onScenarioSelect: handleScenarioSelect,
     onLessonSelect: handleLessonSelect,
     scenarios: SCENARIOS.filter(s => s.lang === currentLanguage.code),
-    lessons: LESSONS.filter(l => l.lang === currentLanguage.code),
+    lessons: LESSONS_WITH_B1.filter(l => l.lang === currentLanguage.code),
     onNavigate: (view: View) => navigate(Object.values(VIEWS).find(v => v.id === view.id)?.path || '/'),
     isInactive,
   };
@@ -325,13 +339,13 @@ export default function App() {
   return (
     <div className="bg-gradient-to-br from-sky-200 via-teal-100 to-yellow-100 min-h-screen flex">
       {showOnboarding && <Onboarding onComplete={handleOnboardingComplete} />}
-      <Sidebar 
-        isOpen={isSidebarOpen} 
+      <Sidebar
+        isOpen={isSidebarOpen}
         setIsOpen={setSidebarOpen}
         currentLanguage={currentLanguage}
       />
       <div className="flex-1 flex flex-col transition-all duration-300 md:ml-72">
-        <Header 
+        <Header
           onToggleSidebar={() => setSidebarOpen(!isSidebarOpen)}
           currentLanguage={currentLanguage}
           setCurrentLanguage={handleLanguageChange}
@@ -347,7 +361,7 @@ export default function App() {
             {/* Protected routes */}
             <Route element={<ProtectedRoute isAuthed={isAuthenticated} emailVerified={emailVerified} />}>
               <Route path={VIEWS.DASHBOARD.path} element={<Dashboard {...dashboardProps} />} />
-              <Route path={VIEWS.LANGUAGES_PAGE.path} element={<LanguagesView onLanguageSelect={handleLanguageSelectFromPage} lessons={LESSONS} />} />
+              <Route path={VIEWS.LANGUAGES_PAGE.path} element={<LanguagesView onLanguageSelect={handleLanguageSelectFromPage} lessons={LESSONS_WITH_B1} />} />
               <Route path={VIEWS.SCENARIO.path} element={<ScenarioViewWrapper language={currentLanguage} />} />
               <Route path={VIEWS.LESSON.path} element={<LessonViewWrapper />} />
               <Route path={VIEWS.GRAMMAR.path} element={<GrammarClinicView />} />
@@ -380,32 +394,32 @@ export default function App() {
         <Footer />
       </div>
 
-       {showInstallBanner && (
-            <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md p-4 border-t border-slate-200/80 shadow-lg z-50 animate-fade-in-up md:ml-72">
-                <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                        <img src="/icon.svg" alt="ChirPolly Icon" className="h-12 w-12 hidden sm:block" />
-                        <div>
-                            <h3 className="font-bold text-slate-800">Get the full experience!</h3>
-                            <p className="text-sm text-slate-600">Install ChirPolly on your device for easy access.</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                        {installPrompt && (
-                            <Button onClick={handleInstallClick}>Install</Button>
-                        )}
-                        {isIos && (
-                            <p className="text-sm text-slate-600 font-semibold text-center bg-slate-100 p-2 rounded-md flex items-center gap-1">
-                                Tap <ShareIcon className="w-5 h-5"/> then "Add to Home Screen"
-                            </p>
-                        )}
-                        <button onClick={handleDismissBanner} className="p-2 text-slate-500 hover:bg-slate-200 rounded-full" title="Dismiss">
-                            <XMarkIcon className="h-6 w-6"/>
-                        </button>
-                    </div>
-                </div>
+      {showInstallBanner && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md p-4 border-t border-slate-200/80 shadow-lg z-50 animate-fade-in-up md:ml-72">
+          <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <img src="/icon.svg" alt="ChirPolly Icon" className="h-12 w-12 hidden sm:block" />
+              <div>
+                <h3 className="font-bold text-slate-800">Get the full experience!</h3>
+                <p className="text-sm text-slate-600">Install ChirPolly on your device for easy access.</p>
+              </div>
             </div>
-        )}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              {installPrompt && (
+                <Button onClick={handleInstallClick}>Install</Button>
+              )}
+              {isIos && (
+                <p className="text-sm text-slate-600 font-semibold text-center bg-slate-100 p-2 rounded-md flex items-center gap-1">
+                  Tap <ShareIcon className="w-5 h-5" /> then "Add to Home Screen"
+                </p>
+              )}
+              <button onClick={handleDismissBanner} className="p-2 text-slate-500 hover:bg-slate-200 rounded-full" title="Dismiss">
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
