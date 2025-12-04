@@ -1659,10 +1659,464 @@ export const MULTILINGUAL_PHRASES: Record<string, PhraseCategory[]> = {
             phrases: [
                 { id: 'sa-1', phrase: 'भवान् कथम् अस्ति?', translation: 'How are you? (to male)', audio_prompt: 'Say "भवान् कथम् अस्ति?" in Sanskrit.' },
                 { id: 'sa-2', phrase: 'भवत्याः नाम किम्?', translation: 'What is your name? (to female)', audio_prompt: 'Say "भवत्याः नाम किम्?" in Sanskrit.' },
+                { id: 'sa-3', phrase: 'अहं कुशलः अस्मि', translation: 'I am fine, thank you.', audio_prompt: 'Say "अहं कुशलः अस्मि" in Sanskrit.' },
+                { id: 'sa-4', phrase: 'धन्यवादः', translation: 'Thank you.', audio_prompt: 'Say "धन्यवादः" in Sanskrit.' },
             ]
         }
-    ]
+    ],
 };
+
+// B1 Level Lessons (Intermediate)
+export const B1_LESSONS: Lesson[] = [
+    // English B1
+    {
+        lesson_id: "en_b1_01",
+        // ... (rest of the code remains the same)
+        language: "English",
+        title: "Travel Planning",
+        description: "Learn vocabulary and phrases for planning trips, booking hotels, and asking for directions.",
+        level: "Intermediate",
+        emoji: "✈️",
+        lang: 'en',
+        category: 'Lesson',
+        content: [
+            { word: "accommodation", transliteration: "uh-KOM-uh-day-shun", meaning: "a place to stay", example: "We need to find affordable accommodation for our trip.", audio: "audio/accommodation_en.mp3" },
+            { word: "itinerary", transliteration: "eye-TIN-uh-rer-ee", meaning: "a planned route or journey", example: "I've prepared a detailed itinerary for our week in Paris.", audio: "audio/itinerary_en.mp3" },
+            { word: "departure", transliteration: "dih-PAR-chur", meaning: "leaving a place", example: "Our departure time is 6 AM tomorrow.", audio: "audio/departure_en.mp3" },
+            { word: "luggage", transliteration: "LUG-ij", meaning: "bags and suitcases for travel", example: "Please check your luggage at the counter.", audio: "audio/luggage_en.mp3" },
+            { word: "reservation", transliteration: "rez-ur-VAY-shun", meaning: "booking in advance", example: "I have a reservation for two rooms.", audio: "audio/reservation_en.mp3" }
+        ],
+        quiz: [
+            { question: "What does 'itinerary' mean?", options: ["a suitcase", "a planned route", "a hotel"], answer: "a planned route" },
+            { question: "Which word means 'bags for travel'?", options: ["accommodation", "luggage", "departure"], answer: "luggage" }
+        ],
+        cultureCapsule: {
+            title: "Travel Etiquette in English-Speaking Countries",
+            icon: "🌍",
+            content: "In English-speaking countries, it's polite to say 'please' and 'thank you' frequently. When asking for directions, start with 'Excuse me' or 'Could you help me?' Tipping is expected in the USA (15-20%) but not mandatory in the UK."
+        }
+    },
+    // Spanish B1
+    {
+        lesson_id: "es_b1_01",
+        language: "Spanish",
+        title: "En el Trabajo",
+        description: "Learn workplace vocabulary and professional communication in Spanish.",
+        level: "Intermediate",
+        emoji: "💼",
+        lang: 'es',
+        category: 'Lesson',
+        content: [
+            { word: "reunión", transliteration: "reh-oo-nee-OHN", meaning: "meeting", example: "Tenemos una reunión importante a las 10.", audio: "audio/reunion_es.mp3" },
+            { word: "proyecto", transliteration: "pro-YEHK-toh", meaning: "project", example: "Estoy trabajando en un proyecto nuevo.", audio: "audio/proyecto_es.mp3" },
+            { word: "plazo", transliteration: "PLAH-soh", meaning: "deadline", example: "El plazo es el viernes.", audio: "audio/plazo_es.mp3" },
+            { word: "presupuesto", transliteration: "preh-soo-PWES-toh", meaning: "budget", example: "Necesitamos aumentar el presupuesto.", audio: "audio/presupuesto_es.mp3" },
+            { word: "informe", transliteration: "een-FOR-meh", meaning: "report", example: "Enviaré el informe mañana.", audio: "audio/informe_es.mp3" }
+        ],
+        quiz: [
+            { question: "¿Qué significa 'plazo'?", options: ["meeting", "deadline", "project"], answer: "deadline" },
+            { question: "¿Cuál es la palabra para 'budget'?", options: ["presupuesto", "proyecto", "reunión"], answer: "presupuesto" }
+        ]
+    },
+    // French B1
+    {
+        lesson_id: "fr_b1_01",
+        language: "French",
+        title: "Au Restaurant",
+        description: "Learn dining vocabulary and how to order food in French restaurants.",
+        level: "Intermediate",
+        emoji: "🍽️",
+        lang: 'fr',
+        category: 'Lesson',
+        content: [
+            { word: "l'addition", transliteration: "lah-dee-see-OHN", meaning: "the bill", example: "L'addition, s'il vous plaît.", audio: "audio/addition_fr.mp3" },
+            { word: "le plat principal", transliteration: "luh plah preen-see-PAL", meaning: "main course", example: "Je vais prendre le poulet comme plat principal.", audio: "audio/plat_principal_fr.mp3" },
+            { word: "l'entrée", transliteration: "lahn-TRAY", meaning: "starter/appetizer", example: "Nous commençons par une entrée.", audio: "audio/entree_fr.mp3" },
+            { word: "le dessert", transliteration: "luh deh-SER", meaning: "dessert", example: "Quel dessert recommandez-vous?", audio: "audio/dessert_fr.mp3" },
+            { word: "le vin", transliteration: "luh van", meaning: "wine", example: "Nous prenons une bouteille de vin rouge.", audio: "audio/vin_fr.mp3" }
+        ],
+        quiz: [
+            { question: "Qu'est-ce que 'l'addition'?", options: ["appetizer", "the bill", "dessert"], answer: "the bill" },
+            { question: "Quel mot signifie 'main course'?", options: ["entrée", "plat principal", "dessert"], answer: "plat principal" }
+        ]
+    },
+    // German B1
+    {
+        lesson_id: "de_b1_01",
+        language: "German",
+        title: "Wohnen und Wohnungssuche",
+        description: "Learn vocabulary about housing and apartment hunting in German.",
+        level: "Intermediate",
+        emoji: "🏠",
+        lang: 'de',
+        category: 'Lesson',
+        content: [
+            { word: "die Wohnung", transliteration: "dee VOH-noong", meaning: "apartment", example: "Ich suche eine neue Wohnung.", audio: "audio/wohnung_de.mp3" },
+            { word: "die Miete", transliteration: "dee MEE-tuh", meaning: "rent", example: "Die Miete ist 800 Euro pro Monat.", audio: "audio/miete_de.mp3" },
+            { word: "das Schlafzimmer", transliteration: "dahs SHLAHF-tsim-mer", meaning: "bedroom", example: "Das Schlafzimmer ist sehr groß.", audio: "audio/schlafzimmer_de.mp3" },
+            { word: "die Küche", transliteration: "dee KOO-khuh", meaning: "kitchen", example: "Die Küche ist modern ausgestattet.", audio: "audio/kuche_de.mp3" },
+            { word: "der Balkon", transliteration: "der bahl-KON", meaning: "balcony", example: "Die Wohnung hat einen schönen Balkon.", audio: "audio/balkon_de.mp3" }
+        ],
+        quiz: [
+            { question: "Was bedeutet 'Miete'?", options: ["apartment", "rent", "bedroom"], answer: "rent" },
+            { question: "Welches Wort bedeutet 'kitchen'?", options: ["Küche", "Schlafzimmer", "Balkon"], answer: "Küche" }
+        ]
+    },
+    // Japanese B1
+    {
+        lesson_id: "ja_b1_01",
+        language: "Japanese",
+        title: "ビジネス日本語",
+        description: "Learn business Japanese for professional communication.",
+        level: "Intermediate",
+        emoji: "📊",
+        lang: 'ja',
+        category: 'Lesson',
+        content: [
+            { word: "会議", transliteration: "kaigi", meaning: "meeting", example: "明日の会議は10時です。", audio: "audio/kaigi_ja.mp3" },
+            { word: "プロジェクト", transliteration: "purojekuto", meaning: "project", example: "新しいプロジェクトに参加しています。", audio: "audio/project_ja.mp3" },
+            { word: "締め切り", transliteration: "shimekiri", meaning: "deadline", example: "締め切りは金曜日です。", audio: "audio/shimekiri_ja.mp3" },
+            { word: "予算", transliteration: "yosan", meaning: "budget", example: "予算を増やす必要があります。", audio: "audio/yosan_ja.mp3" },
+            { word: "報告書", transliteration: "hokukusho", meaning: "report", example: "報告書を明日提出します。", audio: "audio/hokukusho_ja.mp3" }
+        ],
+        quiz: [
+            { question: "「会議」の意味は？", options: ["project", "meeting", "deadline"], answer: "meeting" },
+            { question: "「予算」は何ですか？", options: ["budget", "report", "meeting"], answer: "budget" }
+        ]
+    },
+    // Hindi B1
+    {
+        lesson_id: "hi_b1_01",
+        language: "Hindi",
+        title: "परिवार और रिश्ते",
+        description: "Learn vocabulary about family relationships and personal life in Hindi.",
+        level: "Intermediate",
+        emoji: "👨‍👩‍👧‍👦",
+        lang: 'hi',
+        category: 'Lesson',
+        content: [
+            { word: "भाई", transliteration: "bhai", meaning: "brother", example: "मेरा भाई दिल्ली में रहता है।", audio: "audio/bhai_hi.mp3" },
+            { word: "बहू", transliteration: "bahu", meaning: "daughter-in-law", example: "मेरी बहू बहुत अच्छी है।", audio: "audio/bahu_hi.mp3" },
+            { word: "चाचा", transliteration: "chacha", meaning: "uncle (father's brother)", example: "मेरे चाचा मुंबई में हैं।", audio: "audio/chacha_hi.mp3" },
+            { word: "रिश्ता", transliteration: "rishta", meaning: "relationship", example: "हमारा रिश्ता बहुत मजबूत है।", audio: "audio/rishta_hi.mp3" },
+            { word: "विवाह", transliteration: "vivah", meaning: "marriage", example: "विवाह अगले महीने है।", audio: "audio/vivah_hi.mp3" }
+        ],
+        quiz: [
+            { question: "भाई का अर्थ क्या है?", options: ["uncle", "brother", "cousin"], answer: "brother" },
+            { question: "विवाह का मतलब क्या है?", options: ["family", "marriage", "relationship"], answer: "marriage" }
+        ]
+    },
+    // Tamil B1
+    {
+        lesson_id: "ta_b1_01",
+        language: "Tamil",
+        title: "உணவு மற்றும் சமையல்",
+        description: "Learn food vocabulary and cooking terms in Tamil.",
+        level: "Intermediate",
+        emoji: "🍳",
+        lang: 'ta',
+        category: 'Lesson',
+        content: [
+            { word: "சமையல்", transliteration: "samaiyal", meaning: "cooking", example: "நான் சமையல் செய்ய விரும்புகிறேன்.", audio: "audio/samaiyal_ta.mp3" },
+            { word: "பொருட்கள்", transliteration: "porutkal", meaning: "ingredients", example: "இந்த பொருட்கள் சுவையாக உள்ளன.", audio: "audio/porutkal_ta.mp3" },
+            { word: "வறுத்தல்", transliteration: "varuthal", meaning: "frying", example: "நான் வறுத்தல் செய்கிறேன்.", audio: "audio/varuthal_ta.mp3" },
+            { word: "உப்பு", transliteration: "uppu", meaning: "salt", example: "உப்பு சிறிது சேர்க்கவும்.", audio: "audio/uppu_ta.mp3" },
+            { word: "சுவை", transliteration: "suvai", meaning: "taste", example: "இந்த சுவை அருமையாக உள்ளது.", audio: "audio/suvai_ta.mp3" }
+        ],
+        quiz: [
+            { question: "சமையல் என்றால் என்ன?", options: ["eating", "cooking", "shopping"], answer: "cooking" },
+            { question: "பொருட்கள் என்றால் என்ன?", options: ["salt", "ingredients", "taste"], answer: "ingredients" }
+        ]
+    },
+    // Telugu B1
+    {
+        lesson_id: "te_b1_01",
+        language: "Telugu",
+        title: "ఆరోగ్యం మరియు సుస్థిరత",
+        description: "Learn health and wellness vocabulary in Telugu.",
+        level: "Intermediate",
+        emoji: "🏥",
+        lang: 'te',
+        category: 'Lesson',
+        content: [
+            { word: "ఆరోగ్యం", transliteration: "arogya", meaning: "health", example: "ఆరోగ్యం చాలా ముఖ్యమైనది.", audio: "audio/arogya_te.mp3" },
+            { word: "వైద్యుడు", transliteration: "vaidyudu", meaning: "doctor", example: "నేను వైద్యుడిని చూశాను.", audio: "audio/vaidyudu_te.mp3" },
+            { word: "ఔషధం", transliteration: "aushadham", meaning: "medicine", example: "ఔషధం తీసుకోండి.", audio: "audio/aushadham_te.mp3" },
+            { word: "వ్యాయామం", transliteration: "vyayamam", meaning: "exercise", example: "రోజూ వ్యాయామం చేయండి.", audio: "audio/vyayamam_te.mp3" },
+            { word: "నిద్ర", transliteration: "nidra", meaning: "sleep", example: "తగినంత నిద్ర అవసరం.", audio: "audio/nidra_te.mp3" }
+        ],
+        quiz: [
+            { question: "ఆరోగ్యం అంటే ఏమిటి?", options: ["exercise", "health", "medicine"], answer: "health" },
+            { question: "వైద్యుడు ఎవరు?", options: ["doctor", "teacher", "nurse"], answer: "doctor" }
+        ]
+    },
+    // Kannada B1
+    {
+        lesson_id: "kn_b1_01",
+        language: "Kannada",
+        title: "ಶಿಕ್ಷಣ ಮತ್ತು ವೃತ್ತಿ",
+        description: "Learn education and career vocabulary in Kannada.",
+        level: "Intermediate",
+        emoji: "📚",
+        lang: 'kn',
+        category: 'Lesson',
+        content: [
+            { word: "ಶಿಕ್ಷಣ", transliteration: "shikshana", meaning: "education", example: "ಶಿಕ್ಷಣ ಬಹಳ ಮುಖ್ಯ.", audio: "audio/shikshana_kn.mp3" },
+            { word: "ಶಾಲೆ", transliteration: "shale", meaning: "school", example: "ನಾನು ಶಾಲೆಗೆ ಹೋಗುತ್ತೇನೆ.", audio: "audio/shale_kn.mp3" },
+            { word: "ಪರೀಕ್ಷೆ", transliteration: "pareeksha", meaning: "exam", example: "ಪರೀಕ್ಷೆ ಮುಂದಿನ ವಾರ.", audio: "audio/pareeksha_kn.mp3" },
+            { word: "ವೃತ್ತಿ", transliteration: "vrutti", meaning: "profession", example: "ನನ್ನ ವೃತ್ತಿ ಇಂಜಿನಿಯರ.", audio: "audio/vrutti_kn.mp3" },
+            { word: "ಕೌಶಲ್ಯ", transliteration: "kaushaly", meaning: "skill", example: "ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿ ಮುಖ್ಯ.", audio: "audio/kaushaly_kn.mp3" }
+        ],
+        quiz: [
+            { question: "ಶಿಕ್ಷಣ ಅಂದರೆ ಏನು?", options: ["school", "education", "exam"], answer: "education" },
+            { question: "ವೃತ್ತಿ ಎಂದರೆ ಏನು?", options: ["skill", "profession", "school"], answer: "profession" }
+        ]
+    },
+    // Malayalam B1
+    {
+        lesson_id: "ml_b1_01",
+        language: "Malayalam",
+        title: "സഞ്ചരണം ഉപദേശങ്ങൾ",
+        description: "Learn travel tips and advice in Malayalam.",
+        level: "Intermediate",
+        emoji: "🧳",
+        lang: 'ml',
+        category: 'Lesson',
+        content: [
+            { word: "സഞ്ചരണം", transliteration: "sancharam", meaning: "travel", example: "സഞ്ചരണം ഒരു നല്ല അനുഭവം.", audio: "audio/sancharam_ml.mp3" },
+            { word: "വിമാനം", transliteration: "vimana", meaning: "airplane", example: "വിമാനം നാളെ പുറപ്പെടുന്നു.", audio: "audio/vimana_ml.mp3" },
+            { word: "ഹോട്ടൽ", transliteration: "hotel", meaning: "hotel", example: "ഹോട്ടൽ വളരെ നല്ലതാണ്.", audio: "audio/hotel_ml.mp3" },
+            { word: "കാർഡ്", transliteration: "kard", meaning: "card", example: "ക്രെഡിറ്റ് കാർഡ് ഉണ്ടോ?", audio: "audio/kard_ml.mp3" },
+            { word: "ടിക്കറ്റ്", transliteration: "ticket", meaning: "ticket", example: "ടിക്കറ്റ് വാങ്ങണം.", audio: "audio/ticket_ml.mp3" }
+        ],
+        quiz: [
+            { question: "സഞ്ചരണം എന്നാൽ?", options: ["hotel", "travel", "airplane"], answer: "travel" },
+            { question: "വിമാനം എന്നാൽ?", options: ["airplane", "ticket", "hotel"], answer: "airplane" }
+        ]
+    },
+    // Marathi B1
+    {
+        lesson_id: "mr_b1_01",
+        language: "Marathi",
+        title: "खेळ आणि मनोरंजन",
+        description: "Learn sports and entertainment vocabulary in Marathi.",
+        level: "Intermediate",
+        emoji: "⚽",
+        lang: 'mr',
+        category: 'Lesson',
+        content: [
+            { word: "खेळ", transliteration: "khel", meaning: "sport", example: "मला क्रिकेट खेळायला आवडते.", audio: "audio/khel_mr.mp3" },
+            { word: "चित्रपट", transliteration: "chitrapata", meaning: "movie", example: "आज रात्री चित्रपट पाहू.", audio: "audio/chitrapata_mr.mp3" },
+            { word: "संगीत", transliteration: "sangeet", meaning: "music", example: "संगीत माझा आवडता शौक.", audio: "audio/sangeet_mr.mp3" },
+            { word: "नृत्य", transliteration: "nrutya", meaning: "dance", example: "नृत्य करणे मजेदार आहे.", audio: "audio/nrutya_mr.mp3" },
+            { word: "खेळाडू", transliteration: "khelaadu", meaning: "player", example: "तो एक चांगला खेळाडू आहे.", audio: "audio/khelaadu_mr.mp3" }
+        ],
+        quiz: [
+            { question: "खेळ म्हणजे काय?", options: ["movie", "sport", "music"], answer: "sport" },
+            { question: "चित्रपट म्हणजे काय?", options: ["dance", "movie", "player"], answer: "movie" }
+        ]
+    },
+    // Odia B1
+    {
+        lesson_id: "or_b1_01",
+        language: "Odia",
+        title: "ବାଜାର ଏବଂ କିଣିବା",
+        description: "Learn shopping and market vocabulary in Odia.",
+        level: "Intermediate",
+        emoji: "🛒",
+        lang: 'or',
+        category: 'Lesson',
+        content: [
+            { word: "ବାଜାର", transliteration: "bazar", meaning: "market", example: "ମୁଁ ବାଜାରକୁ ଯାଉଛି।", audio: "audio/bazar_or.mp3" },
+            { word: "ଦାମ", transliteration: "dam", meaning: "price", example: "ଏହାର ଦାମ କେତେ?", audio: "audio/dam_or.mp3" },
+            { word: "ବିକ୍ରେତା", transliteration: "bikreta", meaning: "seller", example: "ବିକ୍ରେତା ଭଲ ଦାମ ଦେଲେ।", audio: "audio/bikreta_or.mp3" },
+            { word: "ଖରିଦ", transliteration: "kharida", meaning: "purchase", example: "ମୁଁ ଖରିଦ କଲି।", audio: "audio/kharida_or.mp3" },
+            { word: "ଟଙ୍ଗା", transliteration: "tanga", meaning: "money", example: "ମୋ ପାଖରେ ଟଙ୍ଗା ନାହିଁ।", audio: "audio/tanga_or.mp3" }
+        ],
+        quiz: [
+            { question: "ବାଜାର ମାନେ କଣ?", options: ["price", "market", "seller"], answer: "market" },
+            { question: "ଦାମ ମାନେ କଣ?", options: ["money", "price", "purchase"], answer: "price" }
+        ]
+    },
+    // Gujarati B1
+    {
+        lesson_id: "gu_b1_01",
+        language: "Gujarati",
+        title: "ફેશન અને કપડાં",
+        description: "Learn fashion and clothing vocabulary in Gujarati.",
+        level: "Intermediate",
+        emoji: "👗",
+        lang: 'gu',
+        category: 'Lesson',
+        content: [
+            { word: "કપડું", transliteration: "kapdu", meaning: "cloth", example: "આ કપડું ખૂબ સુંદર છે.", audio: "audio/kapdu_gu.mp3" },
+            { word: "શર્ટ", transliteration: "shirt", meaning: "shirt", example: "મને નીલો શર્ટ ચાહિએ.", audio: "audio/shirt_gu.mp3" },
+            { word: "પેન્ટ", transliteration: "pent", meaning: "pants", example: "આ પેન્ટ મને ફિટ છે.", audio: "audio/pent_gu.mp3" },
+            { word: "જૂતા", transliteration: "juta", meaning: "shoes", example: "મને નવા જૂતા ખરીદવા છે.", audio: "audio/juta_gu.mp3" },
+            { word: "ટોપી", transliteration: "topi", meaning: "hat", example: "ટોપી પહેર્યો તો ધૂપ નહીં લાગે.", audio: "audio/topi_gu.mp3" }
+        ],
+        quiz: [
+            { question: "કપડું શું છે?", options: ["shoes", "cloth", "shirt"], answer: "cloth" },
+            { question: "જૂતા શું છે?", options: ["hat", "shoes", "pants"], answer: "shoes" }
+        ]
+    },
+    // Bengali B1
+    {
+        lesson_id: "bn_b1_01",
+        language: "Bengali",
+        title: "আবহাওয়া এবং ঋতু",
+        description: "Learn weather and seasons vocabulary in Bengali.",
+        level: "Intermediate",
+        emoji: "🌤️",
+        lang: 'bn',
+        category: 'Lesson',
+        content: [
+            { word: "আবহাওয়া", transliteration: "abohawa", meaning: "weather", example: "আজ আবহাওয়া ভালো.", audio: "audio/abohawa_bn.mp3" },
+            { word: "বৃষ্টি", transliteration: "bristi", meaning: "rain", example: "বৃষ্টি হচ্ছে.", audio: "audio/bristi_bn.mp3" },
+            { word: "রোদ", transliteration: "rod", meaning: "sun", example: "রোদ খুব তেজ.", audio: "audio/rod_bn.mp3" },
+            { word: "শীত", transliteration: "shit", meaning: "winter", example: "শীতে ঠান্ডা পড়ে.", audio: "audio/shit_bn.mp3" },
+            { word: "গ্রীষ্ম", transliteration: "grisma", meaning: "summer", example: "গ্রীষ্মে গরম থাকে.", audio: "audio/grisma_bn.mp3" }
+        ],
+        quiz: [
+            { question: "আবহাওয়া মানে কী?", options: ["rain", "weather", "sun"], answer: "weather" },
+            { question: "বৃষ্টি মানে কী?", options: ["rain", "sun", "winter"], answer: "rain" }
+        ]
+    },
+    // Italian B1
+    {
+        lesson_id: "it_b1_01",
+        language: "Italian",
+        title: "Arte e Cultura",
+        description: "Learn art and culture vocabulary in Italian.",
+        level: "Intermediate",
+        emoji: "🎨",
+        lang: 'it',
+        category: 'Lesson',
+        content: [
+            { word: "arte", transliteration: "AHR-teh", meaning: "art", example: "Mi piace l'arte italiana.", audio: "audio/arte_it.mp3" },
+            { word: "museo", transliteration: "moo-ZEH-oh", meaning: "museum", example: "Andiamo al museo domani.", audio: "audio/museo_it.mp3" },
+            { word: "quadro", transliteration: "KWAH-droh", meaning: "painting", example: "Questo quadro è bellissimo.", audio: "audio/quadro_it.mp3" },
+            { word: "scultura", transliteration: "skool-TOO-rah", meaning: "sculpture", example: "La scultura è di Michelangelo.", audio: "audio/scultura_it.mp3" },
+            { word: "cultura", transliteration: "kool-TOO-rah", meaning: "culture", example: "La cultura italiana è ricca.", audio: "audio/cultura_it.mp3" }
+        ],
+        quiz: [
+            { question: "Cosa significa 'arte'?", options: ["museum", "art", "painting"], answer: "art" },
+            { question: "Cosa significa 'museo'?", options: ["museum", "culture", "sculpture"], answer: "museum" }
+        ]
+    },
+    // Dutch B1
+    {
+        lesson_id: "nl_b1_01",
+        language: "Dutch",
+        title: "Familie en Vrienden",
+        description: "Learn family and friends vocabulary in Dutch.",
+        level: "Intermediate",
+        emoji: "👫",
+        lang: 'nl',
+        category: 'Lesson',
+        content: [
+            { word: "familie", transliteration: "fah-MEE-lee", meaning: "family", example: "Mijn familie is groot.", audio: "audio/familie_nl.mp3" },
+            { word: "vriend", transliteration: "VREENT", meaning: "friend", example: "Hij is mijn beste vriend.", audio: "audio/vriend_nl.mp3" },
+            { word: "broer", transliteration: "BROOR", meaning: "brother", example: "Mijn broer woont in Amsterdam.", audio: "audio/broer_nl.mp3" },
+            { word: "zus", transliteration: "ZUS", meaning: "sister", example: "Mijn zus is leraar.", audio: "audio/zus_nl.mp3" },
+            { word: "ouders", transliteration: "OW-ders", meaning: "parents", example: "Mijn ouders zijn oud.", audio: "audio/ouders_nl.mp3" }
+        ],
+        quiz: [
+            { question: "Wat betekent 'familie'?", options: ["friend", "family", "brother"], answer: "family" },
+            { question: "Wat betekent 'vriend'?", options: ["sister", "friend", "parents"], answer: "friend" }
+        ]
+    },
+    // Danish B1
+    {
+        lesson_id: "da_b1_01",
+        language: "Danish",
+        title: "Hjem og Bolig",
+        description: "Learn home and housing vocabulary in Danish.",
+        level: "Intermediate",
+        emoji: "🏡",
+        lang: 'da',
+        category: 'Lesson',
+        content: [
+            { word: "hus", transliteration: "HOOS", meaning: "house", example: "Vi har et stort hus.", audio: "audio/hus_da.mp3" },
+            { word: "stue", transliteration: "STOO-uh", meaning: "living room", example: "Stuen er meget hyggelig.", audio: "audio/stue_da.mp3" },
+            { word: "køkken", transliteration: "KØK-ken", meaning: "kitchen", example: "Køkkenet er moderne.", audio: "audio/kokken_da.mp3" },
+            { word: "soveværelse", transliteration: "SOH-vuh-vair-ul-suh", meaning: "bedroom", example: "Soveværelset er stort.", audio: "audio/sovevaerelse_da.mp3" },
+            { word: "bad", transliteration: "BAHD", meaning: "bathroom", example: "Badet er lille.", audio: "audio/bad_da.mp3" }
+        ],
+        quiz: [
+            { question: "Hvad betyder 'hus'?", options: ["kitchen", "house", "bedroom"], answer: "house" },
+            { question: "Hvad betyder 'køkken'?", options: ["living room", "kitchen", "bathroom"], answer: "kitchen" }
+        ]
+    },
+    // Portuguese B1
+    {
+        lesson_id: "pt_b1_01",
+        language: "Portuguese",
+        title: "Saúde e Bem-estar",
+        description: "Learn health and wellness vocabulary in Portuguese.",
+        level: "Intermediate",
+        emoji: "💪",
+        lang: 'pt',
+        category: 'Lesson',
+        content: [
+            { word: "saúde", transliteration: "sah-OO-duh", meaning: "health", example: "A saúde é importante.", audio: "audio/saude_pt.mp3" },
+            { word: "médico", transliteration: "MEH-dee-koh", meaning: "doctor", example: "Fui ao médico ontem.", audio: "audio/medico_pt.mp3" },
+            { word: "remédio", transliteration: "heh-MEH-dee-oh", meaning: "medicine", example: "Tomo remédio todos os dias.", audio: "audio/remedio_pt.mp3" },
+            { word: "exercício", transliteration: "eh-zer-SEE-see-oh", meaning: "exercise", example: "Faço exercício na academia.", audio: "audio/exercicio_pt.mp3" },
+            { word: "doença", transliteration: "doh-EN-suh", meaning: "illness", example: "Ele tem uma doença grave.", audio: "audio/doenca_pt.mp3" }
+        ],
+        quiz: [
+            { question: "O que significa 'saúde'?", options: ["doctor", "health", "medicine"], answer: "health" },
+            { question: "O que significa 'médico'?", options: ["medicine", "doctor", "exercise"], answer: "doctor" }
+        ]
+    },
+    // Finnish B1
+    {
+        lesson_id: "fi_b1_01",
+        language: "Finnish",
+        title: "Luonto ja Ympäristö",
+        description: "Learn nature and environment vocabulary in Finnish.",
+        level: "Intermediate",
+        emoji: "🌲",
+        lang: 'fi',
+        category: 'Lesson',
+        content: [
+            { word: "luonto", transliteration: "LOO-on-toh", meaning: "nature", example: "Luonto on kaunis.", audio: "audio/luonto_fi.mp3" },
+            { word: "metsä", transliteration: "MET-sä", meaning: "forest", example: "Metsässä on paljon puita.", audio: "audio/metsa_fi.mp3" },
+            { word: "vesi", transliteration: "VEH-see", meaning: "water", example: "Vesi on kylmää.", audio: "audio/vesi_fi.mp3" },
+            { word: "puu", transliteration: "POO", meaning: "tree", example: "Puussa on lehtiä.", audio: "audio/puu_fi.mp3" },
+            { word: "kivi", transliteration: "KEE-vee", meaning: "stone", example: "Kivi on kova.", audio: "audio/kivi_fi.mp3" }
+        ],
+        quiz: [
+            { question: "Mitä tarkoittaa 'luonto'?", options: ["forest", "nature", "water"], answer: "nature" },
+            { question: "Mitä tarkoittaa 'metsä'?", options: ["tree", "forest", "stone"], answer: "forest" }
+        ]
+    },
+    // Sanskrit B1
+    {
+        lesson_id: "sa_b1_01",
+        language: "Sanskrit",
+        title: "ज्ञान और शिक्षा",
+        description: "Learn knowledge and education vocabulary in Sanskrit.",
+        level: "Intermediate",
+        emoji: "📖",
+        lang: 'sa',
+        category: 'Lesson',
+        content: [
+            { word: "ज्ञान", transliteration: "jnana", meaning: "knowledge", example: "ज्ञान शक्तिशाली है।", audio: "audio/jnana_sa.mp3" },
+            { word: "शिक्षा", transliteration: "shiksha", meaning: "education", example: "शिक्षा जीवन का आधार है।", audio: "audio/shiksha_sa.mp3" },
+            { word: "गुरु", transliteration: "guru", meaning: "teacher", example: "गुरु ज्ञान देते हैं।", audio: "audio/guru_sa.mp3" },
+            { word: "विद्या", transliteration: "vidya", meaning: "learning", example: "विद्या सर्वश्रेष्ठ है।", audio: "audio/vidya_sa.mp3" },
+            { word: "पुस्तक", transliteration: "pustak", meaning: "book", example: "पुस्तक पढ़ना अच्छा है।", audio: "audio/pustak_sa.mp3" }
+        ],
+        quiz: [
+            { question: "ज्ञान का अर्थ क्या है?", options: ["teacher", "knowledge", "book"], answer: "knowledge" },
+            { question: "शिक्षा का अर्थ क्या है?", options: ["learning", "education", "teacher"], answer: "education" }
+        ]
+    }
+];
+
+export const LESSONS_WITH_B1 = [...LESSONS, ...B1_LESSONS];
 
 export const VIEWS: { [key: string]: View & { path: string, icon?: any } } = {
   DASHBOARD: { id: 'dashboard', label: 'Learn', path: '/', icon: HomeIcon },
