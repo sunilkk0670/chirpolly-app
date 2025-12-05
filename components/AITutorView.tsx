@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI, LiveSession, LiveServerMessage, Modality, Blob } from '@google/genai';
+import { GoogleGenAI, LiveServerMessage, Modality, Blob } from '@google/genai';
 import type { Message, Language } from '../types';
 import { AI_TUTOR_PROMPT } from '../constants';
 import { MicrophoneIcon, StopCircleIcon } from './icons/Icons';
 import { Spinner } from './common/Spinner';
+import { POLLY_PERSONA } from '../services/geminiService';
 
 // --- Audio Helper Functions ---
 function encode(bytes: Uint8Array) {
@@ -57,7 +58,7 @@ function createBlob(data: Float32Array): Blob {
 }
 
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || 'demo-api-key-for-development' });
+const ai = new GoogleGenAI({ apiKey: (import.meta as any).env.VITE_GEMINI_API_KEY || 'demo-api-key-for-development' });
 
 export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -66,7 +67,7 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
     const [currentOutput, setCurrentOutput] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const sessionPromiseRef = useRef<Promise<LiveSession> | null>(null);
+    const sessionPromiseRef = useRef<Promise<any> | null>(null);
     const inputAudioContextRef = useRef<AudioContext | null>(null);
     const outputAudioContextRef = useRef<AudioContext | null>(null);
     const streamRef = useRef<MediaStream | null>(null);
@@ -147,7 +148,7 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
             source.connect(scriptProcessorRef.current);
             scriptProcessorRef.current.connect(inputAudioContextRef.current.destination);
 
-            const systemPrompt = AI_TUTOR_PROMPT.replace(/{languageName}/g, language.name);
+            const systemPrompt = `${POLLY_PERSONA}\n\nYou are teaching ${language.name}.`;
 
             sessionPromiseRef.current = ai.live.connect({
                 model: 'gemini-2.5-flash-native-audio-preview-09-2025',

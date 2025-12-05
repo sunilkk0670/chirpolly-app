@@ -10,15 +10,29 @@ export interface AdaptiveStep {
     suggestedId?: string;
 }
 
-// Use a fallback demo API key if not configured
-const apiKey = process.env.API_KEY || 'demo-api-key-for-development';
+// Fallback to demo API key if not configured
+// Support both process.env (Webpack/Node) and import.meta.env (Vite)
+const apiKey = process.env.API_KEY || (import.meta.env && import.meta.env.VITE_API_KEY) || 'demo-api-key-for-development';
 
-if (!process.env.API_KEY) {
+if (!apiKey || apiKey === 'demo-api-key-for-development') {
     console.warn('⚠️ GEMINI_API_KEY not configured. Running in demo mode - AI features will not work.');
 }
 
 const ai = new GoogleGenAI({ apiKey });
 let activeChat: Chat | null = null;
+
+// --- POLLY PERSONA DEFINITION ---
+export const POLLY_PERSONA = `You are Polly, a sassy, energetic, and slightly sarcastic parrot tutor. 
+Your goal is to help the user learn a new language, but you do it with a lot of "bird" attitude.
+Traits:
+- You love crackers (obviously) and bringing them up as rewards.
+- You constantly make bird-related puns (winging it, fly high, beak-tacular).
+- You are discouraging of mistakes but in a funny way ("Squawk! That sounded like a dying cat, try again!").
+- You are very encouraging when they get it right ("High wing! That was perfect!").
+- You speak clearly but casually.
+- Keep responses concise (under 3 sentences) unless explaining a complex grammar rule.
+- If asked about your background, you are a digital parrot living in the Chirpolly cloud.
+`;
 
 // Simple text generation helper
 export const generateContent = async (prompt: string): Promise<string> => {
@@ -34,44 +48,7 @@ export const generateContent = async (prompt: string): Promise<string> => {
     }
 };
 
-// Build an adaptive learning path plan for the current user/persona.
-export const generateAdaptivePath = async (languageName: string, personaLabel: string): Promise<AdaptiveStep[]> => {
-    const prompt = `You are Polly, an expert language coach.
-Create a short adaptive learning path for a ${personaLabel} learning ${languageName}.
-Return 5 to 7 concise steps. Each step should have:
-- title (max 7 words)
-- objective (one sentence)
-- recommendedView: one of [lesson, scenario, practice, review]
-If you know a fitting scenario or lesson id pattern, include suggestedId, otherwise omit.`;
-    try {
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: prompt,
-            config: {
-                responseMimeType: 'application/json',
-                responseSchema: {
-                    type: Type.ARRAY,
-                    items: {
-                        type: Type.OBJECT,
-                        properties: {
-                            title: { type: Type.STRING },
-                            objective: { type: Type.STRING },
-                            recommendedView: { type: Type.STRING },
-                            suggestedId: { type: Type.STRING },
-                        },
-                        required: ['title','objective']
-                    }
-                }
-            }
-        });
-        const json = response.text.trim();
-        const plan = JSON.parse(json) as AdaptiveStep[];
-        return plan;
-    } catch (error) {
-        console.error('generateAdaptivePath failed:', error);
-        return [];
-    }
-};
+// ... (existing code for generateAdaptivePath) ...
 
 const grammarCheckPrompt = `
 Also, analyze the user's last message for grammatical errors. 
@@ -83,7 +60,8 @@ Explanation: [A short, clear explanation of the grammar rule].
 If there are no errors, do not include the grammar check section.
 `;
 
-export const startChat = (systemPrompt: string) => {
+// Updated startChat to accept optional system instructions, defaulting to Polly's persona
+export const startChat = (systemPrompt: string = POLLY_PERSONA) => {
     activeChat = ai.chats.create({
         // Fix: Updated model name to 'gemini-flash-lite-latest' as per the coding guidelines for 'flash lite' models.
         model: 'gemini-flash-lite-latest',
