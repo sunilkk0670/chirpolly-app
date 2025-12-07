@@ -216,21 +216,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
 
 
 
-            {/* Hero Section */}
-            <section className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 border border-white/30">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <h2 className="text-2xl md:text-3xl font-bold font-sans text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-blue-500 to-rose-500">Learn faster with bite-sized lessons, real conversations, and smart guidance powered by AI.</h2>
-                    <button
-                        onClick={() => {
-                            if (lessons.length > 0) onLessonSelect(lessons[0]);
-                            else navigate(VIEWS.LANGUAGES_PAGE.path);
-                        }}
-                        className="px-6 py-3 rounded-lg bg-slate-200 text-slate-800 font-semibold hover:bg-slate-300 whitespace-nowrap"
-                    >
-                        Continue Learning
-                    </button>
-                </div>
-            </section>
 
             {/* Daily Review Section - SRS */}
             {dueWords.length > 0 && (
