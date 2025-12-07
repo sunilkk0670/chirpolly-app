@@ -80,5 +80,5 @@ try {
   }
 }
 
-export { auth, db };
+export { auth, db, app };
 export const isDemoModeEnabled = isDemoMode;

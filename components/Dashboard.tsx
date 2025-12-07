@@ -214,32 +214,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                 </p>
             </header>
 
-            {/* AI Chat Card */}
-            <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 text-white shadow-lg"
-            >
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div className="flex-1">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-2">Welcome to ChirPolly</h2>
-                        <p className="text-white/90 text-base md:text-lg mb-4">
-                            Practice conversation, ask grammar questions, or just chat anytime - powered by AI!
-                        </p>
-                        <div className="flex items-center gap-2 text-white/80 text-sm">
-                            <span>💬</span>
-                            <span className="font-semibold">3/3 Free Conversations Today</span>
-                        </div>
-                    </div>
-                    <button
-                        onClick={() => navigate(VIEWS.AI_TUTOR_CHAT.path)}
-                        className="px-6 py-3 bg-white text-indigo-700 font-bold rounded-lg hover:bg-indigo-50 transition-colors flex items-center gap-2"
-                    >
-                        Chat with Polly 🎤
-                    </button>
-                </div>
-            </motion.section>
+
 
             {/* Hero Section */}
             <section className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 border border-white/30">

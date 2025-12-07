@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI, LiveServerMessage, Modality, Blob } from '@google/genai';
+import {
+    startChat,
+    sendMessage,
+    generateContent,
+    analyzeGrammar,
+    generateImage,
+    editImage,
+    generateVocabularyFromImage,
+    generateSpeech,
+    startLiveConversation,
+    POLLY_PERSONA
+} from '../services/geminiServiceNew';
 import type { Message, Language } from '../types';
 import { AI_TUTOR_PROMPT } from '../constants';
 import { MicrophoneIcon, StopCircleIcon } from './icons/Icons';
 import { Spinner } from './common/Spinner';
-import { POLLY_PERSONA } from '../services/geminiService';
 
 // --- Audio Helper Functions ---
 function encode(bytes: Uint8Array) {
@@ -57,11 +67,8 @@ function createBlob(data: Float32Array): Blob {
     };
 }
 
-// Fallback to demo API key if not configured
-// check all possible env vars
-const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || ((import.meta as any).env && ((import.meta as any).env.VITE_GEMINI_API_KEY || (import.meta as any).env.VITE_API_KEY)) || 'demo-api-key-for-development';
-
-const ai = new GoogleGenAI({ apiKey });
+// Old SDK code removed - now using secure Firebase AI Logic SDK
+// API key is managed server-side via Firebase configuration
 
 export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -134,97 +141,24 @@ export const AITutorView: React.FC<{ language: Language; }> = ({ language }) => 
                 throw new Error("Your browser does not support audio recording.");
             }
 
-            streamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-            inputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
-            outputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-
-            const source = inputAudioContextRef.current.createMediaStreamSource(streamRef.current);
-            scriptProcessorRef.current = inputAudioContextRef.current.createScriptProcessor(4096, 1, 1);
-
-            scriptProcessorRef.current.onaudioprocess = (audioProcessingEvent) => {
-                const inputData = audioProcessingEvent.inputBuffer.getChannelData(0);
-                const pcmBlob = createBlob(inputData);
-                sessionPromiseRef.current?.then((session) => session.sendRealtimeInput({ media: pcmBlob }));
-            };
-
-            source.connect(scriptProcessorRef.current);
-            scriptProcessorRef.current.connect(inputAudioContextRef.current.destination);
-
             const systemPrompt = `${POLLY_PERSONA}\n\nYou are teaching ${language.name}.`;
 
-            sessionPromiseRef.current = ai.live.connect({
-                model: 'gemini-2.0-flash-exp',
-                callbacks: {
-                    onopen: () => {
-                        console.log('Live session opened.');
-                        setSessionState('active');
-                    },
-                    onmessage: async (message: LiveServerMessage) => {
-                        if (message.serverContent?.outputTranscription) {
-                            const text = message.serverContent.outputTranscription.text;
-                            currentOutputRef.current += text;
-                            setCurrentOutput(currentOutputRef.current);
-                        }
-                        if (message.serverContent?.inputTranscription) {
-                            const text = message.serverContent.inputTranscription.text;
-                            currentInputRef.current += text;
-                            setCurrentInput(currentInputRef.current);
-                        }
+            // Use the new secure Firebase AI Logic Live API
+            // startAudioConversation() handles all audio processing automatically
+            const liveSession = await startLiveConversation(systemPrompt);
 
-                        if (message.serverContent?.turnComplete) {
-                            const fullInput = currentInputRef.current;
-                            const fullOutput = currentOutputRef.current;
+            // Store the session for cleanup
+            sessionPromiseRef.current = Promise.resolve(liveSession.session);
 
-                            setMessages(prev => [
-                                ...prev,
-                                { role: 'user', text: fullInput },
-                                { role: 'model', text: fullOutput }
-                            ]);
+            console.log('Live session opened with Firebase AI Logic.');
+            setSessionState('active');
 
-                            currentInputRef.current = '';
-                            currentOutputRef.current = '';
-                            setCurrentInput('');
-                            setCurrentOutput('');
-                        }
-
-                        const base64Audio = message.serverContent?.modelTurn?.parts[0]?.inlineData.data;
-                        if (base64Audio && outputAudioContextRef.current) {
-                            const outputCtx = outputAudioContextRef.current;
-                            nextStartTimeRef.current = Math.max(nextStartTimeRef.current, outputCtx.currentTime);
-
-                            const audioBuffer = await decodeAudioData(decode(base64Audio), outputCtx, 24000, 1);
-
-                            const sourceNode = outputCtx.createBufferSource();
-                            sourceNode.buffer = audioBuffer;
-                            sourceNode.connect(outputCtx.destination);
-
-                            sourceNode.addEventListener('ended', () => {
-                                audioSourcesRef.current.delete(sourceNode);
-                            });
-
-                            sourceNode.start(nextStartTimeRef.current);
-                            nextStartTimeRef.current += audioBuffer.duration;
-                            audioSourcesRef.current.add(sourceNode);
-                        }
-                    },
-                    onerror: (e: ErrorEvent) => {
-                        console.error('Live session error:', e);
-                        setErrorMessage('An error occurred during the session. Please try again.');
-                        stopConversation();
-                    },
-                    onclose: () => {
-                        console.log('Live session closed.');
-                        stopConversation();
-                    },
-                },
-                config: {
-                    systemInstruction: systemPrompt,
-                    responseModalities: [Modality.AUDIO],
-                    inputAudioTranscription: {},
-                    outputAudioTranscription: {},
-                },
-            });
+            // Note: Firebase AI Logic Live API handles:
+            // - Microphone access and audio capture
+            // - Audio streaming to Gemini
+            // - Audio playback from Gemini
+            // - Transcription (both input and output)
+            // All automatically via startAudioConversation()
 
         } catch (err) {
             console.error("Error starting conversation:", err);
