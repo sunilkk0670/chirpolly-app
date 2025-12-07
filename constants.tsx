@@ -5,26 +5,26 @@ import { HomeIcon, GlobeIcon, GrammarIcon, VocabularyIcon, ImageGeneratorIcon, C
 import { ChatBubbleIcon, BriefcaseIcon, AcademicCapIcon, MapPinIcon, SparklesIcon } from './components/icons/Icons';
 
 export const LANGUAGES_CONFIG: (Language & { emoji: string })[] = [
-  { code: 'en', name: 'English', emoji: '🇬🇧' },
-  { code: 'es', name: 'Spanish', emoji: '🇪🇸' },
-  { code: 'fr', name: 'French', emoji: '🇫🇷' },
-  { code: 'de', name: 'German', emoji: '🇩🇪' },
-  { code: 'ja', name: 'Japanese', emoji: '🇯🇵' },
-  { code: 'sa', name: 'Sanskrit', emoji: '🕉️' },
-  { code: 'hi', name: 'Hindi', emoji: '🇮🇳' },
-  { code: 'ta', name: 'Tamil', emoji: '🇮🇳' },
-  { code: 'kn', name: 'Kannada', emoji: '🇮🇳' },
-  { code: 'te', name: 'Telugu', emoji: '🇮🇳' },
-  { code: 'ml', name: 'Malayalam', emoji: '🇮🇳' },
-  { code: 'mr', name: 'Marathi', emoji: '🇮🇳' },
-  { code: 'or', name: 'Odia', emoji: '🇮🇳' },
-  { code: 'gu', name: 'Gujarati', emoji: '🇮🇳' },
-  { code: 'bn', name: 'Bengali', emoji: '🇧🇩' },
-  { code: 'it', name: 'Italian', emoji: '🇮🇹' },
-  { code: 'nl', name: 'Dutch', emoji: '🇳🇱' },
-  { code: 'da', name: 'Danish', emoji: '🇩🇰' },
-  { code: 'pt', name: 'Portuguese', emoji: '🇵🇹' },
-  { code: 'fi', name: 'Finnish', emoji: '🇫🇮' },
+    { code: 'en', name: 'English', emoji: '🇬🇧' },
+    { code: 'es', name: 'Spanish', emoji: '🇪🇸' },
+    { code: 'fr', name: 'French', emoji: '🇫🇷' },
+    { code: 'de', name: 'German', emoji: '🇩🇪' },
+    { code: 'ja', name: 'Japanese', emoji: '🇯🇵' },
+    { code: 'sa', name: 'Sanskrit', emoji: '🕉️' },
+    { code: 'hi', name: 'Hindi', emoji: '🇮🇳' },
+    { code: 'ta', name: 'Tamil', emoji: '🇮🇳' },
+    { code: 'kn', name: 'Kannada', emoji: '🇮🇳' },
+    { code: 'te', name: 'Telugu', emoji: '🇮🇳' },
+    { code: 'ml', name: 'Malayalam', emoji: '🇮🇳' },
+    { code: 'mr', name: 'Marathi', emoji: '🇮🇳' },
+    { code: 'or', name: 'Odia', emoji: '🇮🇳' },
+    { code: 'gu', name: 'Gujarati', emoji: '🇮🇳' },
+    { code: 'bn', name: 'Bengali', emoji: '🇧🇩' },
+    { code: 'it', name: 'Italian', emoji: '🇮🇹' },
+    { code: 'nl', name: 'Dutch', emoji: '🇳🇱' },
+    { code: 'da', name: 'Danish', emoji: '🇩🇰' },
+    { code: 'pt', name: 'Portuguese', emoji: '🇵🇹' },
+    { code: 'fi', name: 'Finnish', emoji: '🇫🇮' },
 ];
 
 export const LANGUAGES: Language[] = LANGUAGES_CONFIG.map(({ code, name }) => ({ code, name }));
@@ -514,7 +514,7 @@ export const LESSONS: Lesson[] = [
         language: "Finnish",
         title: "Basic Greetings",
         description: "Learn your first few greetings in Finnish with a fun quiz.",
-// Fix: Corrected typo in 'level' from 'Beginger' to 'Beginner'.
+        // Fix: Corrected typo in 'level' from 'Beginger' to 'Beginner'.
         level: "Beginner",
         emoji: "👋",
         lang: 'fi',
@@ -954,23 +954,23 @@ export const LESSONS: Lesson[] = [
 
 
 export const SCENARIOS: Scenario[] = [
-  {
-    id: 'cafe-fr',
-    title: 'Ordering Coffee in Paris',
-    description: 'Practice your French by ordering drinks and pastries at a Parisian café.',
-    emoji: '☕',
-    lang: 'fr',
-    category: 'Conversation',
-    systemPrompt: "You are a friendly Parisian barista. The user is a customer trying to order in French. Be patient, help them if they struggle, and respond naturally in French. Keep your responses brief and conversational."
-  },
-  {
-    id: 'greetings-fr',
-    title: 'French Greetings 101',
-    description: 'Learn essential French greetings and farewells for everyday conversations.',
-    emoji: '👋',
-    lang: 'fr',
-    category: 'Conversation',
-    systemPrompt: `You are a friendly and encouraging French tutor named Chloé. Your goal is to teach the user basic French greetings.
+    {
+        id: 'cafe-fr',
+        title: 'Ordering Coffee in Paris',
+        description: 'Practice your French by ordering drinks and pastries at a Parisian café.',
+        emoji: '☕',
+        lang: 'fr',
+        category: 'Conversation',
+        systemPrompt: "You are a friendly Parisian barista. The user is a customer trying to order in French. Be patient, help them if they struggle, and respond naturally in French. Keep your responses brief and conversational."
+    },
+    {
+        id: 'greetings-fr',
+        title: 'French Greetings 101',
+        description: 'Learn essential French greetings and farewells for everyday conversations.',
+        emoji: '👋',
+        lang: 'fr',
+        category: 'Conversation',
+        systemPrompt: `You are a friendly and encouraging French tutor named Chloé. Your goal is to teach the user basic French greetings.
 
 First, greet the user warmly in French and English. Then, present the following lesson clearly using markdown.
 
@@ -998,51 +998,51 @@ B) Salut
 C) Bonsoir
 
 Provide feedback on their answer.`
-  },
-  {
-    id: 'directions-ja',
-    title: 'Asking for Directions in Tokyo',
-    description: 'Navigate the bustling streets of Tokyo by asking for directions in Japanese.',
-    emoji: '🗺️',
-    lang: 'ja',
-    category: 'Conversation',
-    systemPrompt: "You are a helpful local in Tokyo. The user is a lost tourist asking for directions in Japanese. Provide simple, clear directions and be encouraging. Respond in Japanese."
-  },
-  {
-    id: 'restaurant-ja',
-    title: 'Ordering Food in Tokyo',
-    description: 'Practice ordering food and drinks at a restaurant in Tokyo.',
-    emoji: '🍜',
-    lang: 'ja',
-    category: 'Conversation',
-    systemPrompt: "You are a friendly and patient waiter at a casual restaurant in Tokyo. The user is a customer who wants to order food. Greet them in Japanese, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like 'ラーメンはいかがですか？' (Ramen wa ikaga desu ka? - How about some ramen?). Keep your Japanese simple and clear for a learner. Start by welcoming the customer and asking if they are ready to order."
-  },
-  {
-    id: 'market-es',
-    title: 'At the Market in Madrid',
-    description: 'Haggle for prices and buy groceries at a vibrant Spanish market.',
-    emoji: '🍎',
-    lang: 'es',
-    category: 'Conversation',
-    systemPrompt: "You are a vendor at a market in Madrid. The user wants to buy some fruit. Interact with them in Spanish, be lively, and maybe try to upsell them on your best produce."
-  },
-  {
-    id: 'interview-de',
-    title: 'Job Interview in Berlin',
-    description: 'Practice for a professional job interview with a German tech company.',
-    emoji: '💼',
-    lang: 'de',
-    category: 'Career Focus',
-    systemPrompt: "You are a hiring manager at a tech startup in Berlin conducting a job interview in German. Ask the user common interview questions about their skills and experience. Maintain a professional but friendly tone."
-  },
-  {
-    id: 'chat-de',
-    title: 'German Chat: Lukas & Anna',
-    description: 'Follow a simple conversation between two friends and practice your German.',
-    emoji: '🍻',
-    lang: 'de',
-    category: 'Conversation',
-    systemPrompt: `You are a German language coach. Your task is to present a simple conversation script and then invite the user to practice.
+    },
+    {
+        id: 'directions-ja',
+        title: 'Asking for Directions in Tokyo',
+        description: 'Navigate the bustling streets of Tokyo by asking for directions in Japanese.',
+        emoji: '🗺️',
+        lang: 'ja',
+        category: 'Conversation',
+        systemPrompt: "You are a helpful local in Tokyo. The user is a lost tourist asking for directions in Japanese. Provide simple, clear directions and be encouraging. Respond in Japanese."
+    },
+    {
+        id: 'restaurant-ja',
+        title: 'Ordering Food in Tokyo',
+        description: 'Practice ordering food and drinks at a restaurant in Tokyo.',
+        emoji: '🍜',
+        lang: 'ja',
+        category: 'Conversation',
+        systemPrompt: "You are a friendly and patient waiter at a casual restaurant in Tokyo. The user is a customer who wants to order food. Greet them in Japanese, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like 'ラーメンはいかがですか？' (Ramen wa ikaga desu ka? - How about some ramen?). Keep your Japanese simple and clear for a learner. Start by welcoming the customer and asking if they are ready to order."
+    },
+    {
+        id: 'market-es',
+        title: 'At the Market in Madrid',
+        description: 'Haggle for prices and buy groceries at a vibrant Spanish market.',
+        emoji: '🍎',
+        lang: 'es',
+        category: 'Conversation',
+        systemPrompt: "You are a vendor at a market in Madrid. The user wants to buy some fruit. Interact with them in Spanish, be lively, and maybe try to upsell them on your best produce."
+    },
+    {
+        id: 'interview-de',
+        title: 'Job Interview in Berlin',
+        description: 'Practice for a professional job interview with a German tech company.',
+        emoji: '💼',
+        lang: 'de',
+        category: 'Career Focus',
+        systemPrompt: "You are a hiring manager at a tech startup in Berlin conducting a job interview in German. Ask the user common interview questions about their skills and experience. Maintain a professional but friendly tone."
+    },
+    {
+        id: 'chat-de',
+        title: 'German Chat: Lukas & Anna',
+        description: 'Follow a simple conversation between two friends and practice your German.',
+        emoji: '🍻',
+        lang: 'de',
+        category: 'Conversation',
+        systemPrompt: `You are a German language coach. Your task is to present a simple conversation script and then invite the user to practice.
 
 First, present this conversation script clearly:
 
@@ -1065,51 +1065,51 @@ After presenting the script, invite the user to practice by taking on the role o
 "Super! Now, let's practice. You are Anna. I'll start as Lukas."
 
 Then, as Lukas, say the first line and wait for the user's response: "Hallo, ich bin Lukas. Wie geht's?"`
-  },
-  {
-    id: 'restaurant-en',
-    title: 'Dinner Reservation',
-    description: 'Call a restaurant to book a table for a special occasion.',
-    emoji: '🍽️',
-    lang: 'en',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a popular restaurant. The user is calling to make a dinner reservation. Guide them through the process, asking for the date, time, and number of guests. Be polite and helpful."
-  },
-  {
-    id: 'market-hi',
-    title: 'A Market in Delhi',
-    description: 'Experience a bustling Delhi market. Practice bargaining and learn about local spices in Hindi.',
-    emoji: '🌶️',
-    lang: 'hi',
-    category: 'Cultural Immersion',
-    systemPrompt: "You are a friendly shopkeeper in a bustling Delhi market. The user is a visitor wanting to buy spices and learn about local culture. Interact with them in conversational Hindi (Hinglish is okay). Teach them how to bargain politely, explain the uses of different masalas (spices), and share a cultural tip about Indian hospitality. Be warm, a bit cheeky, and encouraging."
-  },
-  {
-    id: 'wedding-ta',
-    title: 'A Tamil Wedding',
-    description: 'You are invited to a wedding in Chennai! Learn how to greet elders and what to say during the ceremony.',
-    emoji: '💒',
-    lang: 'ta',
-    category: 'Cultural Immersion',
-    systemPrompt: "You are a close family friend at a traditional Tamil wedding in Chennai. The user is a guest who is new to the culture. Your role is to be their guide. Greet them with 'Vaanga, vaanga!' (Welcome, welcome!). Gently teach them how to greet elders by saying 'Vanakkam'. Explain the significance of the 'thaali' (mangalsutra). Suggest a polite compliment to say to the couple, like 'Jodi porutham romba nalla irukku' (You make a great couple). Respond in simple Tamil and provide English translations for key phrases."
-  },
-  {
-    id: 'temple-kn',
-    title: 'Temple Etiquette in Bangalore',
-    description: 'Learn the dos and don\'ts of visiting a Hindu temple in Karnataka.',
-    emoji: '🙏',
-    lang: 'kn',
-    category: 'Cultural Immersion',
-    systemPrompt: "You are a local guide at a temple in Bangalore. The user is a tourist visiting for the first time. Your goal is to teach them temple etiquette in a friendly manner. Start by telling them in Kannada to remove their shoes ('Chappali bicchi idabeku'). Explain the concept of 'pradakshina' (circumambulating the shrine). Teach them a simple phrase to receive 'prasada' (blessed food offering), like 'Prasada kodi'. Be respectful and informative. Use simple Kannada with English explanations."
-  },
-  {
-    id: 'vocab-sa',
-    title: 'First Words in Sanskrit',
-    description: 'Learn 20 essential Sanskrit words to begin your journey.',
-    emoji: '🕉️',
-    lang: 'sa',
-    category: 'Conversation',
-    systemPrompt: `You are a Sanskrit Guru. The user is a new student. Greet them warmly in English and Sanskrit (e.g., 'Namaste!'). Your first task is to present a list of 20 foundational Sanskrit words with their English translations and a simple example sentence for each. Format this list clearly using markdown. After presenting the list, encourage the user to try using one of the words.
+    },
+    {
+        id: 'restaurant-en',
+        title: 'Dinner Reservation',
+        description: 'Call a restaurant to book a table for a special occasion.',
+        emoji: '🍽️',
+        lang: 'en',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a popular restaurant. The user is calling to make a dinner reservation. Guide them through the process, asking for the date, time, and number of guests. Be polite and helpful."
+    },
+    {
+        id: 'market-hi',
+        title: 'A Market in Delhi',
+        description: 'Experience a bustling Delhi market. Practice bargaining and learn about local spices in Hindi.',
+        emoji: '🌶️',
+        lang: 'hi',
+        category: 'Cultural Immersion',
+        systemPrompt: "You are a friendly shopkeeper in a bustling Delhi market. The user is a visitor wanting to buy spices and learn about local culture. Interact with them in conversational Hindi (Hinglish is okay). Teach them how to bargain politely, explain the uses of different masalas (spices), and share a cultural tip about Indian hospitality. Be warm, a bit cheeky, and encouraging."
+    },
+    {
+        id: 'wedding-ta',
+        title: 'A Tamil Wedding',
+        description: 'You are invited to a wedding in Chennai! Learn how to greet elders and what to say during the ceremony.',
+        emoji: '💒',
+        lang: 'ta',
+        category: 'Cultural Immersion',
+        systemPrompt: "You are a close family friend at a traditional Tamil wedding in Chennai. The user is a guest who is new to the culture. Your role is to be their guide. Greet them with 'Vaanga, vaanga!' (Welcome, welcome!). Gently teach them how to greet elders by saying 'Vanakkam'. Explain the significance of the 'thaali' (mangalsutra). Suggest a polite compliment to say to the couple, like 'Jodi porutham romba nalla irukku' (You make a great couple). Respond in simple Tamil and provide English translations for key phrases."
+    },
+    {
+        id: 'temple-kn',
+        title: 'Temple Etiquette in Bangalore',
+        description: 'Learn the dos and don\'ts of visiting a Hindu temple in Karnataka.',
+        emoji: '🙏',
+        lang: 'kn',
+        category: 'Cultural Immersion',
+        systemPrompt: "You are a local guide at a temple in Bangalore. The user is a tourist visiting for the first time. Your goal is to teach them temple etiquette in a friendly manner. Start by telling them in Kannada to remove their shoes ('Chappali bicchi idabeku'). Explain the concept of 'pradakshina' (circumambulating the shrine). Teach them a simple phrase to receive 'prasada' (blessed food offering), like 'Prasada kodi'. Be respectful and informative. Use simple Kannada with English explanations."
+    },
+    {
+        id: 'vocab-sa',
+        title: 'First Words in Sanskrit',
+        description: 'Learn 20 essential Sanskrit words to begin your journey.',
+        emoji: '🕉️',
+        lang: 'sa',
+        category: 'Conversation',
+        systemPrompt: `You are a Sanskrit Guru. The user is a new student. Greet them warmly in English and Sanskrit (e.g., 'Namaste!'). Your first task is to present a list of 20 foundational Sanskrit words with their English translations and a simple example sentence for each. Format this list clearly using markdown. After presenting the list, encourage the user to try using one of the words.
 
 Here is the list to provide:
 - **नमस्ते (Namaste)** - Hello/Greetings - *नमस्ते, मित्र!* (Hello, friend!)
@@ -1132,196 +1132,196 @@ Here is the list to provide:
 - **धर्मः (Dharmaḥ)** - Duty/Righteousness - *स्वधर्मं पालय।* (Follow your duty.)
 - **कर्म (Karma)** - Action/Deed - *कर्मफलं निश्चितम्।* (The result of an action is certain.)
 - **मोक्षः (Mokṣaḥ)** - Liberation/Freedom - *मोक्षः जीवनस्य परमं लक्ष्यम्।* (Liberation is the ultimate goal of life.)`
-  },
-  {
-    id: 'keigo-meeting-ja',
-    title: 'Business Meeting with a Client',
-    description: 'Navigate a formal business meeting and practice using Sonkeigo (respectful) and Kenjōgo (humble) language.',
-    emoji: '🤝',
-    lang: 'ja',
-    category: 'Keigo Mastery',
-    systemPrompt: "You are a Japanese client, Suzuki-sama, in a formal business meeting. The user is your business partner. Your goal is to guide them in using appropriate Keigo (敬語). Respond in formal Japanese. When the user makes a mistake in Keigo, gently correct them and explain the rule. For example, if they say '食べますか？' (tabemasu ka?), suggest '召し上がりますか？' (meshiagarimasu ka?) and briefly explain it's the respectful form (Sonkeigo). If they correctly use Keigo, praise them. Start the conversation by saying: '本日はお時間をいただき、ありがとうございます。よろしくお願いいたします。' (Honjitsu wa o-jikan o itadaki, arigatō gozaimasu. Yoroshiku onegai itashimasu.)"
-  },
-  {
-    id: 'keigo-boss-ja',
-    title: 'Reporting to Your Manager',
-    description: 'Practice speaking to a superior by giving a progress report to your department head.',
-    emoji: '📈',
-    lang: 'ja',
-    category: 'Keigo Mastery',
-    systemPrompt: "You are a department manager in a Japanese company. The user is your subordinate reporting to you. Your tone should be professional but approachable. You must guide the user to use Kenjōgo (humble language) when talking about their own actions and Sonkeigo (respectful language) when talking about yours. For example, if they say '私が行きました' (watashi ga ikimashita), correct them to '私が参りました' (watashi ga mairimashita). Explain why. Start the conversation by asking: '佐藤くん、例の件、進捗を報告してくれるかな？' (Satō-kun, rei no ken, shinchoku o hōkoku shite kureru ka na?)"
-  },
-  {
-    id: 'keigo-store-ja',
-    title: 'At a Luxury Department Store',
-    description: 'Interact with a highly polite store clerk and practice understanding and using Teineigo (polite language).',
-    emoji: '🛍️',
-    lang: 'ja',
-    category: 'Keigo Mastery',
-    systemPrompt: "You are a very polite and helpful clerk at a high-end department store in Ginza. The user is a customer. You must use high-level Teineigo and Keigo consistently. For example, use 'でございます' (de gozaimasu) instead of 'です' (desu). Address the user as 'お客様' (okyakusama). Your goal is to help the user while exposing them to natural, polite customer service Japanese. If the user's Japanese is polite, respond positively. If it's too casual, gently guide them. Start by greeting the user with 'いらっしゃいませ。何かお探しでございますか？' (Irasshaimase. Nani ka o-sagashi de gozaimasu ka?)"
-  },
-  {
-    id: 'restaurant-bn',
-    title: 'ডিনার রিজার্ভেশন',
-    description: 'একটি বিশেষ অনুষ্ঠানের জন্য একটি টেবিল বুক করার জন্য একটি রেস্টুরেন্টে কল করুন।',
-    emoji: '🍽️',
-    lang: 'bn',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Kolkata. The user is calling to make a dinner reservation in Bengali. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Bengali. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-da',
-    title: 'Bordreservation til middag',
-    description: 'Ring til en restaurant for at bestille bord til en særlig lejlighed.',
-    emoji: '🍽️',
-    lang: 'da',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Copenhagen. The user is calling to make a dinner reservation in Danish. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Danish. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-de',
-    title: 'Essen bestellen in Berlin',
-    description: 'Übe, wie man in einem Restaurant in Berlin Essen und Getränke bestellt.',
-    emoji: '🥨',
-    lang: 'de',
-    category: 'Conversation',
-    systemPrompt: "You are a friendly and patient waiter at a traditional German restaurant in Berlin. The user is a customer who wants to order food. Greet them in German, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like 'Möchten Sie ein Schnitzel probieren?' (Would you like to try a Schnitzel?). Keep your German simple and clear for a learner. Respond ONLY in German. Start by welcoming the customer."
-  },
-  {
-    id: 'restaurant-es',
-    title: 'Reservar una mesa en Barcelona',
-    description: 'Practica cómo pedir comida y bebida en un restaurante en Barcelona.',
-    emoji: '🥘',
-    lang: 'es',
-    category: 'Conversation',
-    systemPrompt: "You are a friendly and patient waiter at a tapas restaurant in Barcelona. The user is a customer who wants to order food. Greet them in Spanish, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like '¿Le gustaría probar nuestras patatas bravas?' (Would you like to try our patatas bravas?). Keep your Spanish simple and clear for a learner. Respond ONLY in Spanish. Start by welcoming the customer."
-  },
-  {
-    id: 'restaurant-fi',
-    title: 'Pöytävaraus illalliselle',
-    description: 'Soita ravintolaan ja varaa pöytä erityistä tilaisuutta varten.',
-    emoji: '🍽️',
-    lang: 'fi',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Helsinki. The user is calling to make a dinner reservation in Finnish. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Finnish. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-fr',
-    title: 'Dîner dans un bistro',
-    description: 'Appelez un bistro pour réserver une table pour une occasion spéciale.',
-    emoji: '🍷',
-    lang: 'fr',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a cozy bistro in Lyon. The user is calling to make a dinner reservation in French. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in French. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-gu',
-    title: 'ડિનર આરક્ષણ',
-    description: 'ખાસ પ્રસંગ માટે ટેબલ બુક કરવા માટે રેસ્ટોરન્ટને કૉલ કરો.',
-    emoji: '🍽️',
-    lang: 'gu',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Ahmedabad. The user is calling to make a dinner reservation in Gujarati. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Gujarati. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-hi',
-    title: 'डिनर आरक्षण',
-    description: 'एक विशेष अवसर के लिए एक टेबल बुक करने के लिए एक रेस्तरां को कॉल करें।',
-    emoji: '🍽️',
-    lang: 'hi',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Delhi. The user is calling to make a dinner reservation in Hindi. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Hindi. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-it',
-    title: 'Prenotazione per la cena',
-    description: 'Chiama un ristorante per prenotare un tavolo per un\'occasione speciale.',
-    emoji: '🍽️',
-    lang: 'it',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Rome. The user is calling to make a dinner reservation in Italian. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Italian. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-kn',
-    title: 'ಊಟದ ಕಾಯ್ದಿರಿಸುವಿಕೆ',
-    description: 'ವಿಶೇಷ ಸಂದರ್ಭಕ್ಕಾಗಿ ಟೇಬಲ್ ಕಾಯ್ದಿರಿಸಲು ರೆಸ್ಟೋರೆಂಟ್‌ಗೆ ಕರೆ ಮಾಡಿ.',
-    emoji: '🍽️',
-    lang: 'kn',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Bangalore. The user is calling to make a dinner reservation in Kannada. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Kannada. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-ml',
-    title: 'അത്താഴത്തിനുള്ള റിസർവേഷൻ',
-    description: 'ഒരു പ്രത്യേക അവസരത്തിനായി ഒരു മേശ ബുക്ക് ചെയ്യാൻ ഒരു റെസ്റ്റോറന്റിലേക്ക് വിളിക്കുക.',
-    emoji: '🍽️',
-    lang: 'ml',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Kochi. The user is calling to make a dinner reservation in Malayalam. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Malayalam. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-mr',
-    title: 'डिनर आरक्षण',
-    description: 'एका विशेष प्रसंगासाठी टेबल बुक करण्यासाठी रेस्टॉरंटला कॉल करा.',
-    emoji: '🍽️',
-    lang: 'mr',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Mumbai. The user is calling to make a dinner reservation in Marathi. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Marathi. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-nl',
-    title: 'Dinerreservering',
-    description: 'Bel een restaurant om een tafel te reserveren voor een speciale gelegenheid.',
-    emoji: '🍽️',
-    lang: 'nl',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Amsterdam. The user is calling to make a dinner reservation in Dutch. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Dutch. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-or',
-    title: 'ରାତ୍ରୀ ଭୋଜନ ପାଇଁ ସଂରକ୍ଷଣ',
-    description: 'ଏକ ବିଶେଷ ଅବସର ପାଇଁ ଏକ ଟେବୁଲ୍ ବୁକ୍ କରିବାକୁ ଏକ ରେଷ୍ଟୁରାଣ୍ଟକୁ କଲ୍ କରନ୍ତୁ |',
-    emoji: '🍽️',
-    lang: 'or',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Bhubaneswar. The user is calling to make a dinner reservation in Odia. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Odia. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-pt',
-    title: 'Reserva para jantar',
-    description: 'Ligue para um restaurante para reservar uma mesa para uma ocasião especial.',
-    emoji: '🍽️',
-    lang: 'pt',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Lisbon. The user is calling to make a dinner reservation in Portuguese. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Portuguese. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-sa',
-    title: 'भोजनार्थम् आरक्षणम्',
-    description: 'विशेषप्रसङ्गाय भोजनशालायां पीठिकां आरक्षितुं दूरभाषां करोतु।',
-    emoji: '🍽️',
-    lang: 'sa',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a traditional restaurant where scholars converse in Sanskrit. The user is calling to make a dinner reservation in Sanskrit. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Sanskrit. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-ta',
-    title: 'இரவு உணவு முன்பதிவு',
-    description: 'ഒരു சிறப்பு சந்தர்ப்பத்திற்காக ஒரு மேசையை முன்பதிவு செய்ய ஒரு உணவகத்தை அழைக்கவும்.',
-    emoji: '🍽️',
-    lang: 'ta',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Chennai. The user is calling to make a dinner reservation in Tamil. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Tamil. Be polite and helpful."
-  },
-  {
-    id: 'restaurant-te',
-    title: 'డిన్నర్ రిజర్వేషన్',
-    description: 'ఒక ప్రత్యేక సందర్భం కోసం ఒక టేబుల్ బుక్ చేయడానికి ఒక రెస్టారెంట్‌కు కాల్ చేయండి.',
-    emoji: '🍽️',
-    lang: 'te',
-    category: 'Conversation',
-    systemPrompt: "You are a host at a restaurant in Hyderabad. The user is calling to make a dinner reservation in Telugu. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Telugu. Be polite and helpful."
-  }
+    },
+    {
+        id: 'keigo-meeting-ja',
+        title: 'Business Meeting with a Client',
+        description: 'Navigate a formal business meeting and practice using Sonkeigo (respectful) and Kenjōgo (humble) language.',
+        emoji: '🤝',
+        lang: 'ja',
+        category: 'Keigo Mastery',
+        systemPrompt: "You are a Japanese client, Suzuki-sama, in a formal business meeting. The user is your business partner. Your goal is to guide them in using appropriate Keigo (敬語). Respond in formal Japanese. When the user makes a mistake in Keigo, gently correct them and explain the rule. For example, if they say '食べますか？' (tabemasu ka?), suggest '召し上がりますか？' (meshiagarimasu ka?) and briefly explain it's the respectful form (Sonkeigo). If they correctly use Keigo, praise them. Start the conversation by saying: '本日はお時間をいただき、ありがとうございます。よろしくお願いいたします。' (Honjitsu wa o-jikan o itadaki, arigatō gozaimasu. Yoroshiku onegai itashimasu.)"
+    },
+    {
+        id: 'keigo-boss-ja',
+        title: 'Reporting to Your Manager',
+        description: 'Practice speaking to a superior by giving a progress report to your department head.',
+        emoji: '📈',
+        lang: 'ja',
+        category: 'Keigo Mastery',
+        systemPrompt: "You are a department manager in a Japanese company. The user is your subordinate reporting to you. Your tone should be professional but approachable. You must guide the user to use Kenjōgo (humble language) when talking about their own actions and Sonkeigo (respectful language) when talking about yours. For example, if they say '私が行きました' (watashi ga ikimashita), correct them to '私が参りました' (watashi ga mairimashita). Explain why. Start the conversation by asking: '佐藤くん、例の件、進捗を報告してくれるかな？' (Satō-kun, rei no ken, shinchoku o hōkoku shite kureru ka na?)"
+    },
+    {
+        id: 'keigo-store-ja',
+        title: 'At a Luxury Department Store',
+        description: 'Interact with a highly polite store clerk and practice understanding and using Teineigo (polite language).',
+        emoji: '🛍️',
+        lang: 'ja',
+        category: 'Keigo Mastery',
+        systemPrompt: "You are a very polite and helpful clerk at a high-end department store in Ginza. The user is a customer. You must use high-level Teineigo and Keigo consistently. For example, use 'でございます' (de gozaimasu) instead of 'です' (desu). Address the user as 'お客様' (okyakusama). Your goal is to help the user while exposing them to natural, polite customer service Japanese. If the user's Japanese is polite, respond positively. If it's too casual, gently guide them. Start by greeting the user with 'いらっしゃいませ。何かお探しでございますか？' (Irasshaimase. Nani ka o-sagashi de gozaimasu ka?)"
+    },
+    {
+        id: 'restaurant-bn',
+        title: 'ডিনার রিজার্ভেশন',
+        description: 'একটি বিশেষ অনুষ্ঠানের জন্য একটি টেবিল বুক করার জন্য একটি রেস্টুরেন্টে কল করুন।',
+        emoji: '🍽️',
+        lang: 'bn',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Kolkata. The user is calling to make a dinner reservation in Bengali. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Bengali. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-da',
+        title: 'Bordreservation til middag',
+        description: 'Ring til en restaurant for at bestille bord til en særlig lejlighed.',
+        emoji: '🍽️',
+        lang: 'da',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Copenhagen. The user is calling to make a dinner reservation in Danish. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Danish. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-de',
+        title: 'Essen bestellen in Berlin',
+        description: 'Übe, wie man in einem Restaurant in Berlin Essen und Getränke bestellt.',
+        emoji: '🥨',
+        lang: 'de',
+        category: 'Conversation',
+        systemPrompt: "You are a friendly and patient waiter at a traditional German restaurant in Berlin. The user is a customer who wants to order food. Greet them in German, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like 'Möchten Sie ein Schnitzel probieren?' (Would you like to try a Schnitzel?). Keep your German simple and clear for a learner. Respond ONLY in German. Start by welcoming the customer."
+    },
+    {
+        id: 'restaurant-es',
+        title: 'Reservar una mesa en Barcelona',
+        description: 'Practica cómo pedir comida y bebida en un restaurante en Barcelona.',
+        emoji: '🥘',
+        lang: 'es',
+        category: 'Conversation',
+        systemPrompt: "You are a friendly and patient waiter at a tapas restaurant in Barcelona. The user is a customer who wants to order food. Greet them in Spanish, ask for their order, and respond naturally. If they seem to struggle, you can offer suggestions like '¿Le gustaría probar nuestras patatas bravas?' (Would you like to try our patatas bravas?). Keep your Spanish simple and clear for a learner. Respond ONLY in Spanish. Start by welcoming the customer."
+    },
+    {
+        id: 'restaurant-fi',
+        title: 'Pöytävaraus illalliselle',
+        description: 'Soita ravintolaan ja varaa pöytä erityistä tilaisuutta varten.',
+        emoji: '🍽️',
+        lang: 'fi',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Helsinki. The user is calling to make a dinner reservation in Finnish. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Finnish. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-fr',
+        title: 'Dîner dans un bistro',
+        description: 'Appelez un bistro pour réserver une table pour une occasion spéciale.',
+        emoji: '🍷',
+        lang: 'fr',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a cozy bistro in Lyon. The user is calling to make a dinner reservation in French. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in French. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-gu',
+        title: 'ડિનર આરક્ષણ',
+        description: 'ખાસ પ્રસંગ માટે ટેબલ બુક કરવા માટે રેસ્ટોરન્ટને કૉલ કરો.',
+        emoji: '🍽️',
+        lang: 'gu',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Ahmedabad. The user is calling to make a dinner reservation in Gujarati. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Gujarati. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-hi',
+        title: 'डिनर आरक्षण',
+        description: 'एक विशेष अवसर के लिए एक टेबल बुक करने के लिए एक रेस्तरां को कॉल करें।',
+        emoji: '🍽️',
+        lang: 'hi',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Delhi. The user is calling to make a dinner reservation in Hindi. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Hindi. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-it',
+        title: 'Prenotazione per la cena',
+        description: 'Chiama un ristorante per prenotare un tavolo per un\'occasione speciale.',
+        emoji: '🍽️',
+        lang: 'it',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Rome. The user is calling to make a dinner reservation in Italian. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Italian. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-kn',
+        title: 'ಊಟದ ಕಾಯ್ದಿರಿಸುವಿಕೆ',
+        description: 'ವಿಶೇಷ ಸಂದರ್ಭಕ್ಕಾಗಿ ಟೇಬಲ್ ಕಾಯ್ದಿರಿಸಲು ರೆಸ್ಟೋರೆಂಟ್‌ಗೆ ಕರೆ ಮಾಡಿ.',
+        emoji: '🍽️',
+        lang: 'kn',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Bangalore. The user is calling to make a dinner reservation in Kannada. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Kannada. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-ml',
+        title: 'അത്താഴത്തിനുള്ള റിസർവേഷൻ',
+        description: 'ഒരു പ്രത്യേക അവസരത്തിനായി ഒരു മേശ ബുക്ക് ചെയ്യാൻ ഒരു റെസ്റ്റോറന്റിലേക്ക് വിളിക്കുക.',
+        emoji: '🍽️',
+        lang: 'ml',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Kochi. The user is calling to make a dinner reservation in Malayalam. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Malayalam. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-mr',
+        title: 'डिनर आरक्षण',
+        description: 'एका विशेष प्रसंगासाठी टेबल बुक करण्यासाठी रेस्टॉरंटला कॉल करा.',
+        emoji: '🍽️',
+        lang: 'mr',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Mumbai. The user is calling to make a dinner reservation in Marathi. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Marathi. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-nl',
+        title: 'Dinerreservering',
+        description: 'Bel een restaurant om een tafel te reserveren voor een speciale gelegenheid.',
+        emoji: '🍽️',
+        lang: 'nl',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Amsterdam. The user is calling to make a dinner reservation in Dutch. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Dutch. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-or',
+        title: 'ରାତ୍ରୀ ଭୋଜନ ପାଇଁ ସଂରକ୍ଷଣ',
+        description: 'ଏକ ବିଶେଷ ଅବସର ପାଇଁ ଏକ ଟେବୁଲ୍ ବୁକ୍ କରିବାକୁ ଏକ ରେଷ୍ଟୁରାଣ୍ଟକୁ କଲ୍ କରନ୍ତୁ |',
+        emoji: '🍽️',
+        lang: 'or',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Bhubaneswar. The user is calling to make a dinner reservation in Odia. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Odia. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-pt',
+        title: 'Reserva para jantar',
+        description: 'Ligue para um restaurante para reservar uma mesa para uma ocasião especial.',
+        emoji: '🍽️',
+        lang: 'pt',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Lisbon. The user is calling to make a dinner reservation in Portuguese. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Portuguese. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-sa',
+        title: 'भोजनार्थम् आरक्षणम्',
+        description: 'विशेषप्रसङ्गाय भोजनशालायां पीठिकां आरक्षितुं दूरभाषां करोतु।',
+        emoji: '🍽️',
+        lang: 'sa',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a traditional restaurant where scholars converse in Sanskrit. The user is calling to make a dinner reservation in Sanskrit. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Sanskrit. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-ta',
+        title: 'இரவு உணவு முன்பதிவு',
+        description: 'ഒരു சிறப்பு சந்தர்ப்பத்திற்காக ஒரு மேசையை முன்பதிவு செய்ய ஒரு உணவகத்தை அழைக்கவும்.',
+        emoji: '🍽️',
+        lang: 'ta',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Chennai. The user is calling to make a dinner reservation in Tamil. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Tamil. Be polite and helpful."
+    },
+    {
+        id: 'restaurant-te',
+        title: 'డిన్నర్ రిజర్వేషన్',
+        description: 'ఒక ప్రత్యేక సందర్భం కోసం ఒక టేబుల్ బుక్ చేయడానికి ఒక రెస్టారెంట్‌కు కాల్ చేయండి.',
+        emoji: '🍽️',
+        lang: 'te',
+        category: 'Conversation',
+        systemPrompt: "You are a host at a restaurant in Hyderabad. The user is calling to make a dinner reservation in Telugu. Guide them through the process, asking for the date, time, and number of guests. Respond ONLY in Telugu. Be polite and helpful."
+    }
 ];
 
 export const ACHIEVEMENT_BADGES: AchievementBadge[] = [
@@ -1429,60 +1429,60 @@ export const POST_LESSON_Messages: PostLessonMessage[] = [
 ];
 
 export const MEDIA_ITEMS: MediaItem[] = [
-  {
-    id: 'podcast-fr-1',
-    type: 'podcast',
-    title: 'Le Français Quotidien',
-    description: 'A short podcast discussing daily life in Paris, perfect for intermediate learners.',
-    thumbnailUrl: 'https://picsum.photos/seed/podcast1/400/300',
-    duration: '12 min',
-    lang: 'fr',
-  },
-  {
-    id: 'film-es-1',
-    type: 'short_film',
-    title: 'Un Día en Madrid',
-    description: 'Follow a character through a day in Madrid in this beautifully shot short film.',
-    thumbnailUrl: 'https://picsum.photos/seed/film1/400/300',
-    duration: '8:45',
-    lang: 'es',
-  },
-  {
-    id: 'comic-ja-1',
-    type: 'comic',
-    title: '猫の冒険 (Neko no Bōken)',
-    description: 'An interactive comic about a cat exploring Tokyo. Tap panels to see translations.',
-    thumbnailUrl: 'https://picsum.photos/seed/comic1/400/300',
-    duration: '10 min read',
-    lang: 'ja',
-  },
-  {
-    id: 'podcast-de-1',
-    type: 'podcast',
-    title: 'Kaffeeklatsch',
-    description: 'Listen to a casual chat in German about culture and hobbies.',
-    thumbnailUrl: 'https://picsum.photos/seed/podcast2/400/300',
-    duration: '15 min',
-    lang: 'de',
-  },
-  {
-    id: 'film-en-1',
-    type: 'short_film',
-    title: 'The London Commute',
-    description: 'A dialogue-heavy short film about two people meeting on the tube.',
-    thumbnailUrl: 'https://picsum.photos/seed/film2/400/300',
-    duration: '6:20',
-    lang: 'en',
-  },
     {
-    id: 'podcast-sa-1',
-    type: 'podcast',
-    title: 'Sanskrit Sāhitya',
-    description: 'Explore the beauty of Sanskrit literature with this beginner-friendly podcast.',
-    thumbnailUrl: 'https://picsum.photos/seed/podcast3/400/300',
-    duration: '18 min',
-    lang: 'sa',
-  },
+        id: 'podcast-fr-1',
+        type: 'podcast',
+        title: 'Le Français Quotidien',
+        description: 'A short podcast discussing daily life in Paris, perfect for intermediate learners.',
+        thumbnailUrl: 'https://picsum.photos/seed/podcast1/400/300',
+        duration: '12 min',
+        lang: 'fr',
+    },
+    {
+        id: 'film-es-1',
+        type: 'short_film',
+        title: 'Un Día en Madrid',
+        description: 'Follow a character through a day in Madrid in this beautifully shot short film.',
+        thumbnailUrl: 'https://picsum.photos/seed/film1/400/300',
+        duration: '8:45',
+        lang: 'es',
+    },
+    {
+        id: 'comic-ja-1',
+        type: 'comic',
+        title: '猫の冒険 (Neko no Bōken)',
+        description: 'An interactive comic about a cat exploring Tokyo. Tap panels to see translations.',
+        thumbnailUrl: 'https://picsum.photos/seed/comic1/400/300',
+        duration: '10 min read',
+        lang: 'ja',
+    },
+    {
+        id: 'podcast-de-1',
+        type: 'podcast',
+        title: 'Kaffeeklatsch',
+        description: 'Listen to a casual chat in German about culture and hobbies.',
+        thumbnailUrl: 'https://picsum.photos/seed/podcast2/400/300',
+        duration: '15 min',
+        lang: 'de',
+    },
+    {
+        id: 'film-en-1',
+        type: 'short_film',
+        title: 'The London Commute',
+        description: 'A dialogue-heavy short film about two people meeting on the tube.',
+        thumbnailUrl: 'https://picsum.photos/seed/film2/400/300',
+        duration: '6:20',
+        lang: 'en',
+    },
+    {
+        id: 'podcast-sa-1',
+        type: 'podcast',
+        title: 'Sanskrit Sāhitya',
+        description: 'Explore the beauty of Sanskrit literature with this beginner-friendly podcast.',
+        thumbnailUrl: 'https://picsum.photos/seed/podcast3/400/300',
+        duration: '18 min',
+        lang: 'sa',
+    },
 ];
 
 export const WORKSHOPS: Workshop[] = [
@@ -2119,23 +2119,23 @@ export const B1_LESSONS: Lesson[] = [
 export const LESSONS_WITH_B1 = [...LESSONS, ...B1_LESSONS];
 
 export const VIEWS: { [key: string]: View & { path: string, icon?: any } } = {
-  DASHBOARD: { id: 'dashboard', label: 'Learn', path: '/', icon: HomeIcon },
-  LANGUAGES_PAGE: { id: 'languages_page', label: 'Languages', path: '/languages', icon: GlobeIcon },
-  SCENARIO: { id: 'scenario', label: 'Scenario', path: '/scenario/:id' }, // No icon, not in sidebar
-  LESSON: { id: 'lesson', label: 'Lesson', path: '/lesson/:id' }, // No icon, not in sidebar
-  GRAMMAR: { id: 'grammar_clinic', label: 'Grammar', path: '/grammar', icon: GrammarIcon },
-  IMAGE_EDITOR: { id: 'image_editor', label: 'Visual Vocabulary', path: '/visual-vocab', icon: VocabularyIcon },
-  WORD_BANK: { id: 'word_bank', label: 'Word Bank', path: '/word-bank', icon: WordBankIcon },
-  KANJI_LAIR: { id: 'kanji_lair', label: 'Kanji Lair', path: '/kanji-lair', icon: KanjiIcon },
-  ACCENT_TRAINING: { id: 'accent_training', label: 'Accent Training', path: '/accent-training', icon: AccentTrainingIcon },
-  TUTORS: { id: 'ai_tutors', label: 'Tutors', path: '/tutors', icon: TutorIcon },
-  AI_TUTOR_CHAT: { id: 'ai_tutor_chat', label: 'AI Tutor Chat', path: '/tutors/ai' }, // No icon, not in sidebar
-  COMMUNITY: { id: 'community', label: 'Community', path: '/community', icon: CommunityIcon },
-  ACHIEVEMENTS: { id: 'achievements', label: 'Achievements', path: '/achievements', icon: AchievementsIcon },
-  CHALLENGES: { id: 'challenges', label: 'Challenges', path: '/challenges', icon: ChallengesIcon },
-  ABOUT: { id: 'about', label: 'About', path: '/about' }, // No icon, for footer
-  TERMS: { id: 'terms', label: 'Terms', path: '/terms' }, // No icon, for footer
-  PRIVACY: { id: 'privacy', label: 'Privacy', path: '/privacy' }, // No icon, for footer
+    DASHBOARD: { id: 'dashboard', label: 'Learn', path: '/', icon: HomeIcon },
+    LANGUAGES_PAGE: { id: 'languages_page', label: 'Languages', path: '/languages', icon: GlobeIcon },
+    SCENARIO: { id: 'scenario', label: 'Scenario', path: '/scenario/:id' }, // No icon, not in sidebar
+    LESSON: { id: 'lesson', label: 'Lesson', path: '/lesson/:id' }, // No icon, not in sidebar
+    GRAMMAR: { id: 'grammar_clinic', label: 'Grammar', path: '/grammar', icon: GrammarIcon },
+    IMAGE_EDITOR: { id: 'image_editor', label: 'Visual Vocabulary', path: '/visual-vocab', icon: VocabularyIcon },
+    WORD_BANK: { id: 'word_bank', label: 'Word Bank', path: '/word-bank', icon: WordBankIcon },
+    KANJI_LAIR: { id: 'kanji_lair', label: 'Kanji Lair', path: '/kanji-lair', icon: KanjiIcon },
+    ACCENT_TRAINING: { id: 'accent_training', label: 'Accent Training', path: '/accent-training', icon: AccentTrainingIcon },
+    TUTORS: { id: 'ai_tutors', label: 'Tutors', path: '/tutors', icon: TutorIcon },
+
+    COMMUNITY: { id: 'community', label: 'Community', path: '/community', icon: CommunityIcon },
+    ACHIEVEMENTS: { id: 'achievements', label: 'Achievements', path: '/achievements', icon: AchievementsIcon },
+    CHALLENGES: { id: 'challenges', label: 'Challenges', path: '/challenges', icon: ChallengesIcon },
+    ABOUT: { id: 'about', label: 'About', path: '/about' }, // No icon, for footer
+    TERMS: { id: 'terms', label: 'Terms', path: '/terms' }, // No icon, for footer
+    PRIVACY: { id: 'privacy', label: 'Privacy', path: '/privacy' }, // No icon, for footer
 };
 
 

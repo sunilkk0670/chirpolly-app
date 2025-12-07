@@ -18,7 +18,7 @@ import { AchievementsView } from './components/AchievementsView';
 import { WordBankView } from './components/WordBankView';
 import { Onboarding } from './components/Onboarding';
 import { LoginPage } from './components/LoginPage';
-import { AITutorView } from './components/AITutorView';
+
 import { TutorView } from './components/TutorView';
 import { AccentTrainingView } from './components/AccentTrainingView';
 import { KanjiLairView } from './components/KanjiLairView';
@@ -373,7 +373,7 @@ export default function App() {
               <Route path={VIEWS.ACHIEVEMENTS.path} element={<AchievementsView />} />
               <Route path={VIEWS.CHALLENGES.path} element={<ChallengesView />} />
               <Route path={VIEWS.TUTORS.path} element={<TutorView />} />
-              <Route path={VIEWS.AI_TUTOR_CHAT.path} element={<AITutorView language={currentLanguage} />} />
+
               <Route path={VIEWS.ABOUT.path} element={<AboutView />} />
               <Route path={VIEWS.TERMS.path} element={<TermsView />} />
               <Route path={VIEWS.PRIVACY.path} element={<PrivacyView />} />
