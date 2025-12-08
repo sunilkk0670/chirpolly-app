@@ -48,7 +48,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen, currentLang
          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-50 px-4 pb-4 border-r border-slate-200/80">
             <Link
                 to="/"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                    setIsOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className="flex h-32 shrink-0 items-center justify-center cursor-pointer px-0 py-6"
             >
                 <ParrotIcon className="h-24 w-auto"/>

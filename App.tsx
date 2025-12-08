@@ -177,6 +177,11 @@ export default function App() {
     }
   }, [isAuthenticated, emailVerified, navigate, location.pathname]);
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   useEffect(() => {
     // Check if banner was already dismissed
     if (localStorage.getItem('chirPollyInstallDismissed') === 'true') {

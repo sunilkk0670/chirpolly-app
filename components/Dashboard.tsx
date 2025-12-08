@@ -204,14 +204,42 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                 />
             )}
 
-            {/* Header Section */}
-            <header className="text-center md:text-left">
-                <h1 className="text-4xl lg:text-5xl font-bold font-poppins text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-rose-500">
-                    Bridging Worlds, One Chirp at a Time.
-                </h1>
-                <p className="mt-2 text-lg text-gray-600 max-w-2xl md:max-w-none">
-                    From the ancient wisdom of Sanskrit to the global language of business, discover a new way to connect.
-                </p>
+            {/* Header Section - Hero */}
+            <header className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 via-purple-500 to-pink-500 p-12 md:p-16 shadow-2xl">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-400/10 rounded-full -ml-36 -mb-36 blur-3xl"></div>
+                
+                <div className="relative z-10">
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-poppins text-white mb-4 leading-tight">
+                        <span className="bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200 bg-clip-text text-transparent">Bridging Worlds,</span>
+                        <br />
+                        <span className="bg-gradient-to-r from-cyan-200 to-emerald-200 bg-clip-text text-transparent">One Chirp at a Time.</span>
+                    </h1>
+                    <p className="mt-6 text-lg md:text-xl text-white/90 max-w-3xl leading-relaxed font-medium">
+                        From the ancient wisdom of Sanskrit to the global language of business, discover a new way to connect.
+                    </p>
+                    <div className="mt-8 flex gap-4 flex-wrap">
+                        <button 
+                            onClick={() => {
+                                // Scroll to Core Lessons section or navigate
+                                const lessonsSection = document.querySelector('h2');
+                                if (lessonsSection) {
+                                    lessonsSection.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }}
+                            className="px-8 py-3 bg-white text-violet-600 font-bold rounded-xl hover:bg-slate-100 transition-all transform hover:scale-105 shadow-lg cursor-pointer"
+                        >
+                            Start Learning
+                        </button>
+                        <button 
+                            onClick={() => navigate(VIEWS.LANGUAGES_PAGE.path)}
+                            className="px-8 py-3 bg-white/20 text-white font-bold rounded-xl border border-white/40 hover:bg-white/30 transition-all backdrop-blur-sm cursor-pointer"
+                        >
+                            Explore Languages
+                        </button>
+                    </div>
+                </div>
             </header>
 
 
