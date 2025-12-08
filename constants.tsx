@@ -2124,7 +2124,6 @@ export const VIEWS: { [key: string]: View & { path: string, icon?: any } } = {
     SCENARIO: { id: 'scenario', label: 'Scenario', path: '/scenario/:id' }, // No icon, not in sidebar
     LESSON: { id: 'lesson', label: 'Lesson', path: '/lesson/:id' }, // No icon, not in sidebar
     GRAMMAR: { id: 'grammar_clinic', label: 'Grammar', path: '/grammar', icon: GrammarIcon },
-    IMAGE_EDITOR: { id: 'image_editor', label: 'Visual Vocabulary', path: '/visual-vocab', icon: VocabularyIcon },
     WORD_BANK: { id: 'word_bank', label: 'Word Bank', path: '/word-bank', icon: WordBankIcon },
     KANJI_LAIR: { id: 'kanji_lair', label: 'Kanji Lair', path: '/kanji-lair', icon: KanjiIcon },
     ACCENT_TRAINING: { id: 'accent_training', label: 'Accent Training', path: '/accent-training', icon: AccentTrainingIcon },
@@ -2143,7 +2142,6 @@ export const ALL_VIEWS: { id: string; label: string; icon: React.FC<React.SVGPro
     { id: 'dashboard', label: 'Learn', icon: HomeIcon },
     { id: 'languages_page', label: 'Languages', icon: GlobeIcon },
     { id: 'grammar_clinic', label: 'Grammar', icon: GrammarIcon },
-    { id: 'image_editor', label: 'Visual Vocabulary', icon: VocabularyIcon },
     { id: 'word_bank', label: 'Word Bank', icon: WordBankIcon },
     { id: 'kanji_lair', label: 'Kanji Lair', icon: KanjiIcon },
     { id: 'accent_training', label: 'Accent Training', icon: AccentTrainingIcon },

@@ -11,7 +11,6 @@ import { VerifyEmail } from './components/VerifyEmail';
 import { ScenarioView } from './components/ScenarioView';
 import { LessonView } from './components/LessonView';
 import { GrammarClinicView } from './components/GrammarClinicView';
-import { ImageEditorView } from './components/ImageEditorView';
 import { ChallengesView } from './components/ChallengesView';
 import { CommunityView } from './components/CommunityView';
 import { AchievementsView } from './components/AchievementsView';
@@ -370,7 +369,6 @@ export default function App() {
               <Route path={VIEWS.SCENARIO.path} element={<ScenarioViewWrapper language={currentLanguage} />} />
               <Route path={VIEWS.LESSON.path} element={<LessonViewWrapper />} />
               <Route path={VIEWS.GRAMMAR.path} element={<GrammarClinicView />} />
-              <Route path={VIEWS.IMAGE_EDITOR.path} element={<ImageEditorView language={currentLanguage} />} />
               <Route path={VIEWS.WORD_BANK.path} element={<WordBankView language={currentLanguage} />} />
               <Route path={VIEWS.KANJI_LAIR.path} element={<KanjiLairView language={currentLanguage} />} />
               <Route path={VIEWS.ACCENT_TRAINING.path} element={<AccentTrainingView language={currentLanguage} />} />
