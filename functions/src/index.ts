@@ -53,9 +53,17 @@ export const transcribeAudio = functions.https.onCall(async (data: any) => {
         audioContentLength: (data && data.audioContent) ? data.audioContent.length : 0,
     });
 
-    // Access audioContent directly from data
-    const audioContent = data && data.audioContent;
-    const languageCode = (data && data.languageCode) || 'en-US';
+    // Firebase callable functions may wrap payload in data.data   
+    // Try both data.data (Gen 2) and data (Gen 1) for compatibility
+    const payload = (data && data.data) || data;
+    const audioContent = payload && payload.audioContent;
+    const languageCode = (payload && payload.languageCode) || 'en-US';
+
+    console.log('Extracted from payload:', {
+        hasPayload: !!payload,
+        hasAudioContent: !!audioContent,
+        audioLength: audioContent ? audioContent.length : 0,
+    });
 
     // Validate that audio content was received
     if (!audioContent || typeof audioContent !== 'string') {
