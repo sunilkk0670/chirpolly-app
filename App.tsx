@@ -356,7 +356,7 @@ export default function App() {
           onLogout={handleLogout}
           user={authUser}
         />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto">
           <Routes>
             {/* Public routes */}
             <Route path="/auth" element={<LoginPage />} />
