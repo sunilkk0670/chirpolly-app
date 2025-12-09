@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { generateImage } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 import { Button } from './common/Button';
 import { ImageIcon, LockIcon } from './icons/Icons';
@@ -16,24 +15,8 @@ export const ImageGeneratorView: React.FC = () => {
             setError('Please enter a prompt to generate an image.');
             return;
         }
-        setError('');
-        setIsLoading(true);
-        setGeneratedImage(null);
-        setDescription(''); // Reset description field
-
-        try {
-            const result = await generateImage(prompt);
-            if (result) {
-                setGeneratedImage(`data:image/jpeg;base64,${result}`);
-            } else {
-                setError('Could not generate the image. Please try a different prompt.');
-            }
-        } catch (err) {
-            setError('An error occurred during image generation. Please try again.');
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
+        setError('Image generation coming soon with Vertex AI.');
+        setIsLoading(false);
     };
     
     const examplePrompts = [

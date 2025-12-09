@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { GoogleGenAI, LiveSession, LiveServerMessage, Blob } from "@google/genai";
 import { marked } from 'marked';
-import { generateSpeech, getPronunciationFeedback } from '../services/geminiService';
 import { MULTILINGUAL_PHRASES } from '../constants';
 import type { Language, PracticePhrase, PhraseCategory } from '../types';
 import { Spinner } from './common/Spinner';
@@ -59,7 +57,7 @@ async function decodeAudioData(
   return buffer;
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || 'demo-api-key-for-development' });
+// AI initialization coming with Vertex AI migration
 
 // --- Phrase Practice Card Component ---
 const PhrasePracticeCard: React.FC<{
@@ -85,42 +83,14 @@ const PhrasePracticeCard: React.FC<{
             alert("Please record your pronunciation first!");
             return;
         }
-        setIsFeedbackLoading(true);
-        setFeedback('');
-        try {
-            const result = await getPronunciationFeedback(item.phrase, transcription, languageName);
-            const htmlResult = await marked.parse(result);
-            setFeedback(htmlResult);
-        } catch (err) {
-            console.error(err);
-            setFeedback("<p>Sorry, an error occurred while getting feedback.</p>");
-        } finally {
-            setIsFeedbackLoading(false);
-        }
+        console.log('Feedback coming soon via Vertex AI');
+        setIsFeedbackLoading(false);
     };
 
     const handlePlayAudio = async () => {
         if (isAudioLoading) return;
-        setIsAudioLoading(true);
-        try {
-            const base64Audio = await generateSpeech(item.audio_prompt);
-            if (!base64Audio) throw new Error("No audio data received.");
-            
-            if (!audioCtxRef.current) {
-                audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-            }
-            const audioCtx = audioCtxRef.current;
-            const audioBuffer = await decodeAudioData(decode(base64Audio), audioCtx, 24000, 1);
-            const source = audioCtx.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioCtx.destination);
-            source.start();
-        } catch (error) {
-            console.error("Failed to play audio:", error);
-            alert("Sorry, could not play audio.");
-        } finally {
-            setIsAudioLoading(false);
-        }
+        console.log('Audio playback coming soon via Vertex AI');
+        setIsAudioLoading(false);
     };
     
     useEffect(() => {

@@ -1,7 +1,6 @@
 
 
 import React, { useState, useRef } from 'react';
-import { generateVocabularyFromImage, editImage, generateImage } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 import { Button } from './common/Button';
 import { ImageIcon, SpeakerWaveIcon } from './icons/Icons';
@@ -59,22 +58,8 @@ export const ImageEditorView: React.FC<{ language: Language }> = ({ language }) 
         setIsGenerating(true);
         setVocabulary([]); // Reset vocab on new image
 
-        try {
-            const result = await generateImage(generatePrompt);
-            if (result) {
-                const mimeType = 'image/jpeg';
-                setImageData({ base64: result, mimeType });
-                setImage(`data:${mimeType};base64,${result}`);
-                setGeneratePrompt(''); // Clear prompt
-            } else {
-                setGenerateError('Could not generate the image. Please try a different prompt.');
-            }
-        } catch (err) {
-            setGenerateError('An error occurred during image generation. Please try again.');
-            console.error(err);
-        } finally {
-            setIsGenerating(false);
-        }
+        setGenerateError('Image generation coming soon with Vertex AI.');
+        setIsGenerating(false);
     };
 
     const handleGenerateVocab = async () => {
@@ -86,20 +71,8 @@ export const ImageEditorView: React.FC<{ language: Language }> = ({ language }) 
         setIsLoadingVocab(true);
         setVocabulary([]);
         
-        try {
-            const result = await generateVocabularyFromImage(imageData.base64, imageData.mimeType, language.name);
-            
-            if (result && result.length > 0) {
-                setVocabulary(result);
-            } else {
-                setVocabError('Could not identify any objects to generate vocabulary. Try another image.');
-            }
-        } catch (err) {
-            setVocabError('An error occurred during vocabulary generation. Please try again.');
-            console.error(err);
-        } finally {
-            setIsLoadingVocab(false);
-        }
+        setVocabError('Vocabulary generation coming soon with Vertex AI.');
+        setIsLoadingVocab(false);
     };
 
     const handleEditImage = async () => {
@@ -114,24 +87,8 @@ export const ImageEditorView: React.FC<{ language: Language }> = ({ language }) 
         setEditError('');
         setIsEditing(true);
 
-        try {
-            const newBase64 = await editImage(imageData.base64, imageData.mimeType, editPrompt);
-            if (newBase64) {
-                // The edited image is likely a PNG, let's update the data
-                const newMimeType = 'image/png';
-                const newImageData = { base64: newBase64, mimeType: newMimeType };
-                setImageData(newImageData);
-                setImage(`data:${newMimeType};base64,${newBase64}`);
-                setEditPrompt(''); // Clear prompt on success
-            } else {
-                setEditError('Could not edit the image. Please try a different prompt.');
-            }
-        } catch (err) {
-            setEditError('An error occurred while editing the image. Please try again.');
-            console.error(err);
-        } finally {
-            setIsEditing(false);
-        }
+        setEditError('Image editing coming soon with Vertex AI.');
+        setIsEditing(false);
     };
 
     return (

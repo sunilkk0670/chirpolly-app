@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { analyzeGrammar } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 import { Button } from './common/Button';
 import { marked } from 'marked';
@@ -18,19 +17,8 @@ export const GrammarClinicView: React.FC = () => {
             setError('Please enter some text to analyze.');
             return;
         }
-        setError('');
-        setIsLoading(true);
-        setAnalysis('');
-        try {
-            const result = await analyzeGrammar(text);
-            const htmlResult = await marked.parse(result);
-            setAnalysis(htmlResult);
-        } catch (err) {
-            setError('An error occurred while analyzing. Please try again.');
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
+        setError('Grammar analysis feature coming soon. Please upgrade to enable.');
+        setIsLoading(false);
     };
 
     return (

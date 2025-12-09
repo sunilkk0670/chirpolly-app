@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Scenario, Lesson, Challenge } from '../types';
 import { CHALLENGES, VIEWS } from '../constants';
 import { FireIcon, StarIcon } from './icons/Icons';
-import { generateContent as genaiGenerateContent } from '../services/geminiService';
 
 // --- Reusable Components ---
 

@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { COMMUNITY_USERS, LANGUAGES, LEADERBOARD_DATA, VIEWS } from '../constants';
 import { Button } from './common/Button';
 import { Spinner } from './common/Spinner';
-import { generateImage } from '../services/geminiService';
 import { TrophyIcon, MicrophoneIcon } from './icons/Icons';
 import type { CommunityUser, LeaderboardUser } from '../types';
 import SocialFeed from './SocialFeed';
@@ -109,21 +108,8 @@ export const CommunityView: React.FC = () => {
     const [isMemeLoading, setIsMemeLoading] = useState(true);
 
     useEffect(() => {
-        const fetchMemeImage = async () => {
-            setIsMemeLoading(true);
-            try {
-                const prompt = "A photo of a capybara wearing a tiny top hat looking very serious at a business meeting.";
-                const result = await generateImage(prompt);
-                if (result) {
-                    setMemeImageUrl(`data:image/jpeg;base64,${result}`);
-                }
-            } catch (error) {
-                console.error("Failed to generate meme image:", error);
-            } finally {
-                setIsMemeLoading(false);
-            }
-        };
-        fetchMemeImage();
+        // Image generation feature coming soon
+        setIsMemeLoading(false);
     }, []);
 
     const filteredUsers = useMemo(() => {

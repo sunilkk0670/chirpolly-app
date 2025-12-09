@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import type { Language, LearningModule, LessonUnit, VocabularyWord, QuizQuestion } from '../types';
 import { LEARNING_PATH } from '../i18n/learningPath';
 import { SpeakerWaveIcon, LockIcon } from './icons/Icons';
-import { generateSpeech, generateQuizForUnit } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 import { Button } from './common/Button';
 import { initializeSRS } from '../services/srsService';

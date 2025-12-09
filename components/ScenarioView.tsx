@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { Scenario, Message, Language, GrammarFeedback } from '../types';
-import { startChat, sendMessage } from '../services/geminiService';
 import { SendIcon, SparklesIcon } from './icons/Icons';
 import { Spinner } from './common/Spinner';
 

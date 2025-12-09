@@ -3,7 +3,6 @@ import { VocabularyWord } from '../types';
 import { calculateNextReview } from '../services/srsService';
 import { Button } from './common/Button';
 import { SpeakerWaveIcon, XMarkIcon } from './icons/Icons';
-import { generateSpeech } from '../services/geminiService';
 import { Spinner } from './common/Spinner';
 
 // --- Audio Decoding Helpers (Reused) ---
@@ -54,35 +53,9 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({ dueWords, onComple
 
     const handlePlayAudio = async (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (loadingAudio || !currentWord) return;
-        setLoadingAudio(true);
-
-        try {
-            const base64Audio = await generateSpeech(currentWord.audio_prompt);
-            if (!base64Audio) throw new Error("No audio data received.");
-
-            if (!audioCtxRef.current) {
-                audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 24000 });
-            }
-            const audioCtx = audioCtxRef.current;
-
-            const audioBuffer = await decodeAudioData(
-                decode(base64Audio),
-                audioCtx,
-                24000,
-                1,
-            );
-
-            const source = audioCtx.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioCtx.destination);
-            source.start();
-
-        } catch (error) {
-            console.error("Failed to play audio:", error);
-        } finally {
-            setLoadingAudio(false);
-        }
+        if (loadingAudio) return;
+        console.log('Audio playback coming soon via Vertex AI');
+        setLoadingAudio(false);
     };
 
     const handleRate = (quality: number) => {
