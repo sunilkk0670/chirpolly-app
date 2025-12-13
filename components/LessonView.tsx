@@ -63,7 +63,7 @@ export const LessonView: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
             setQuizFinished(true);
         }
     };
-    
+
     const restartQuiz = () => {
         setCurrentQuestionIndex(0);
         setSelectedOption(null);
@@ -78,21 +78,21 @@ export const LessonView: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
                 ? 'bg-rose-200 border-rose-400'
                 : 'bg-white hover:bg-rose-100';
         }
-    
+
         // When feedback is shown:
         const isCorrect = currentQuestion && option === currentQuestion.answer;
         const isSelected = option === selectedOption;
-    
+
         if (isCorrect) {
             // The correct answer is always green
             return 'bg-green-200 border-green-400 text-green-900';
         }
-        
+
         if (isSelected && !isCorrect) {
             // The selected incorrect answer is red
             return 'bg-red-200 border-red-400 text-red-900';
         }
-        
+
         // All other incorrect options are grayed out
         return 'bg-slate-100 border-slate-300 text-gray-500';
     };
@@ -100,10 +100,10 @@ export const LessonView: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
     return (
         <div className="max-w-4xl mx-auto animate-fade-in">
             <div className="bg-white rounded-lg shadow-lg border-t-4 border-rose-400 p-6 mb-8">
-                 <h1 className="text-3xl font-bold font-poppins text-gray-800">{lesson.emoji} {lesson.title}</h1>
-                 <p className="text-lg text-gray-600 mt-1">{lesson.level} Level</p>
+                <h1 className="text-3xl font-bold font-poppins text-gray-800">{lesson.emoji} {lesson.title}</h1>
+                <p className="text-lg text-gray-600 mt-1">{lesson.level} Level</p>
             </div>
-            
+
             <div className="bg-white rounded-lg shadow-lg border-t-4 border-teal-400 p-6 mb-8">
                 <h2 className="text-2xl font-bold font-poppins text-gray-700 mb-4">Vocabulary</h2>
                 <div className="space-y-4">
@@ -142,22 +142,49 @@ export const LessonView: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
                     <div className="text-center py-8">
                         <h3 className="text-2xl font-bold text-gray-800">Quiz Complete!</h3>
                         <p className="text-lg text-gray-600 mt-2">Your Score: <span className="font-bold text-teal-600">{score}</span> / {lesson.quiz.length}</p>
-                        
-                        <div className="mt-6 p-4 bg-green-100 border border-green-300/80 rounded-lg animate-fade-in">
-                            <p className="text-green-800 font-semibold">🦜 Polly says: "{pollyMessage}"</p>
-                        </div>
 
-                        <div className="mt-6 flex items-center justify-center gap-x-4">
-                           <button
-                                onClick={() => navigate('/', { state: { lessonCompleted: true } })}
-                                className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors"
-                            >
-                                Back to Dashboard
-                            </button>
-                            <Button onClick={restartQuiz}>
-                                Try Again
-                            </Button>
-                        </div>
+                        {(() => {
+                            const percentage = (score / lesson.quiz.length) * 100;
+                            const passed = percentage >= 50;
+
+                            return (
+                                <>
+                                    <div className={`mt-6 p-4 border rounded-lg animate-fade-in ${passed ? 'bg-green-100 border-green-300/80' : 'bg-orange-100 border-orange-300/80'}`}>
+                                        <p className={`font-semibold ${passed ? 'text-green-800' : 'text-orange-800'}`}>
+                                            🦜 Polly says: "{pollyMessage}"
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-6 flex items-center justify-center gap-x-4">
+                                        {passed ? (
+                                            <>
+                                                <Button onClick={() => navigate('/', { state: { lessonCompleted: true } })}>
+                                                    Back to Dashboard
+                                                </Button>
+                                                <button
+                                                    onClick={restartQuiz}
+                                                    className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors"
+                                                >
+                                                    Retry Quiz
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <button
+                                                    onClick={() => navigate('/', { state: { lessonCompleted: true } })}
+                                                    className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors"
+                                                >
+                                                    Back to Dashboard
+                                                </button>
+                                                <Button onClick={restartQuiz}>
+                                                    Try Again
+                                                </Button>
+                                            </>
+                                        )}
+                                    </div>
+                                </>
+                            );
+                        })()}
                     </div>
                 ) : currentQuestion && (
                     <div>

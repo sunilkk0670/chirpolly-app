@@ -2148,7 +2148,6 @@ export const ALL_VIEWS: { id: string; label: string; icon: React.FC<React.SVGPro
     { id: 'ai_tutors', label: 'Tutors', icon: TutorIcon },
     { id: 'community', label: 'Community', icon: CommunityIcon },
     { id: 'achievements', label: 'Achievements', icon: AchievementsIcon },
-    { id: 'challenges', label: 'Challenges', icon: ChallengesIcon },
 ];
 
 export const LEADERBOARD_DATA: { [key: string]: { title: string, users: LeaderboardUser[] } } = {

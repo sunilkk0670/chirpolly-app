@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Scenario, Lesson, Challenge } from '../types';
-import { CHALLENGES, VIEWS } from '../constants';
+import { VIEWS } from '../constants';
 import { FireIcon, StarIcon } from './icons/Icons';
 
 // --- Reusable Components ---
@@ -107,7 +107,7 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLessonSelect, scenarios, lessons, isInactive }) => {
-    const [dailyChallenge, setDailyChallenge] = useState<Challenge | null>(null);
+    // const [dailyChallenge, setDailyChallenge] = useState<Challenge | null>(null);
     const [dueWords, setDueWords] = useState<VocabularyWord[]>([]);
     const [showReview, setShowReview] = useState(false);
     const location = useLocation();
@@ -147,12 +147,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
 
         loadDueWords();
 
+        /*
         const dailyChallenges = CHALLENGES.filter(c => c.type === 'daily');
         if (dailyChallenges.length > 0) {
             setDailyChallenge(dailyChallenges[Math.floor(Math.random() * dailyChallenges.length)]);
         }
+        */
     }, []);
 
+    /*
     const handleStartChallenge = (challenge: Challenge) => {
         const viewData = challenge.relatedViewId ? Object.values(VIEWS).find(v => v.id === challenge.relatedViewId) : null;
         // If the challenge directs to the dashboard, or has no specific view, navigate to the main challenges page.
@@ -162,6 +165,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
             navigate(VIEWS.CHALLENGES.path);
         }
     };
+    */
 
     const handleReviewComplete = (updatedWords: VocabularyWord[]) => {
         // Update local storage
@@ -208,7 +212,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                 {/* Decorative background elements */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-400/10 rounded-full -ml-36 -mb-36 blur-3xl"></div>
-                
+
                 <div className="relative z-10">
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-poppins text-white mb-4 leading-tight">
                         <span className="bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200 bg-clip-text text-transparent">Bridging Worlds,</span>
@@ -219,7 +223,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                         From the ancient wisdom of Sanskrit to the global language of business, discover a new way to connect.
                     </p>
                     <div className="mt-8 flex gap-4 flex-wrap">
-                        <button 
+                        <button
                             onClick={() => {
                                 // Scroll to Core Lessons section or navigate
                                 const lessonsSection = document.querySelector('h2');
@@ -231,7 +235,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                         >
                             Start Learning
                         </button>
-                        <button 
+                        <button
                             onClick={() => navigate(VIEWS.LANGUAGES_PAGE.path)}
                             className="px-8 py-3 bg-white/20 text-white font-bold rounded-xl border border-white/40 hover:bg-white/30 transition-all backdrop-blur-sm cursor-pointer"
                         >
@@ -344,7 +348,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                         </div>
                     </StatCard>
 
-                    {dailyChallenge && (
+                    {/* Daily Challenge Card Removed due to broken page */
+                    /* dailyChallenge && (
                         <StatCard
                             title="Daily Challenge"
                             icon={
@@ -363,7 +368,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onScenarioSelect, onLesson
                                 </button>
                             </div>
                         </StatCard>
-                    )}
+                    ) */}
                 </div>
             </section>
         </div>

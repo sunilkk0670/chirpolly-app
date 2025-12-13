@@ -203,18 +203,42 @@ const UnitDetailModal: React.FC<{ unit: LessonUnit; onClose: () => void; languag
                 );
             case 'finished':
                 const percentage = Math.round((score / quizQuestions.length) * 100);
+                const passed = percentage >= 50;
                 return (
                     <div className="text-center py-8 animate-fade-in flex-grow flex flex-col justify-center items-center">
                         <h3 className="text-2xl font-bold text-gray-800">Quiz Complete!</h3>
                         <p className="text-lg text-gray-600 mt-2">Your Score: <span className="font-bold text-teal-600">{score}</span> / {quizQuestions.length} ({percentage}%)</p>
-                        {percentage >= 50 && (
+                        {passed ? (
                             <p className="mt-2 font-semibold text-green-600">Great job! You've unlocked the next unit.</p>
+                        ) : (
+                            <p className="mt-2 font-semibold text-orange-600">Keep practicing! Try again to unlock the next unit.</p>
                         )}
                         <div className="mt-6 flex justify-center gap-x-4">
-                            <button onClick={onClose} className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors">Close</button>
-                            <Button onClick={restartQuiz}>
-                                Try Again
-                            </Button>
+                            {passed ? (
+                                <>
+                                    <Button onClick={onClose}>
+                                        Close
+                                    </Button>
+                                    <button
+                                        onClick={restartQuiz}
+                                        className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors"
+                                    >
+                                        Retry Quiz
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button
+                                        onClick={onClose}
+                                        className="inline-flex items-center justify-center gap-x-2 rounded-md bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-600 shadow-sm hover:bg-slate-200 transition-colors"
+                                    >
+                                        Close
+                                    </button>
+                                    <Button onClick={restartQuiz}>
+                                        Try Again
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
                 );
